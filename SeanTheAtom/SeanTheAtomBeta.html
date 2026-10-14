@@ -1,0 +1,3493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oxanium:wght@200..800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            madPink: '#ff5ca8',
+            madCyan: '#75f5e7',
+            madYellow: '#f6cf58',
+            madGreen: '#7ff29a',
+            madBorder: '#5b3a78'
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+  <link rel="stylesheet" href="mad-scientist.css">
+
+  <title>SeanTheAtom</title>
+</head>
+
+<body>
+  <div class="chemistry-edge-art chemistry-edge-art--left" aria-hidden="true">
+    <svg viewBox="0 0 120 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M58 44L84 59L84 89L58 104L32 89L32 59L58 44Z" stroke="#08979D" stroke-width="2.5"/>
+      <path d="M58 44V24M84 89L101 99M32 89L18 111M58 104V132" stroke="#8474A1" stroke-width="2"/>
+      <circle cx="58" cy="20" r="10" fill="#75F5E7" fill-opacity=".28" stroke="#08979D" stroke-width="2"/>
+      <circle cx="105" cy="102" r="10" fill="#FF7BB8" fill-opacity=".24" stroke="#CC6A9B" stroke-width="2"/>
+      <circle cx="15" cy="116" r="10" fill="#F9D86D" fill-opacity=".3" stroke="#B38A1B" stroke-width="2"/>
+      <circle cx="58" cy="138" r="10" fill="#75F5E7" fill-opacity=".28" stroke="#08979D" stroke-width="2"/>
+      <text x="54" y="24" fill="#081C2A" font-size="9" font-weight="800">H</text>
+      <text x="101" y="106" fill="#081C2A" font-size="9" font-weight="800">O</text>
+      <text x="11" y="120" fill="#081C2A" font-size="9" font-weight="800">C</text>
+      <text x="54" y="142" fill="#081C2A" font-size="9" font-weight="800">N</text>
+      <path d="M58 148C58 172 43 174 43 195C43 216 73 216 73 238C73 259 58 261 58 282" stroke="#08979D" stroke-opacity=".6" stroke-width="2" stroke-dasharray="4 7"/>
+      <circle cx="43" cy="196" r="4" fill="#FF7BB8"/>
+      <circle cx="73" cy="238" r="4" fill="#F9D86D"/>
+      <rect x="29" y="264" width="58" height="24" rx="12" fill="#081C2A"/>
+      <text x="41" y="280" fill="#75F5E7" font-size="11" font-weight="700">H₂O</text>
+    </svg>
+  </div>
+  <div class="chemistry-edge-art chemistry-edge-art--right" aria-hidden="true">
+    <svg viewBox="0 0 120 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M43 28H77M50 28V91L24 145C13 168 29 184 51 184H85C107 184 117 168 106 145L80 91V28" stroke="#08979D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M32 151C48 143 61 159 78 151C91 145 99 149 105 154L115 173C119 184 108 192 93 192H39C22 192 13 181 20 166L32 151Z" fill="#75F5E7" fill-opacity=".32"/>
+      <circle cx="49" cy="143" r="4" fill="#FF7BB8"/>
+      <circle cx="70" cy="132" r="3" fill="#8474A1"/>
+      <circle cx="83" cy="144" r="5" fill="#F9D86D"/>
+      <circle cx="59" cy="119" r="3" fill="#08979D"/>
+      <path d="M59 220L79 231L79 254L59 265L39 254L39 231L59 220Z" stroke="#8474A1" stroke-width="2.5"/>
+      <path d="M59 220V205M79 254L96 264M39 254L24 263" stroke="#08979D" stroke-width="2"/>
+      <circle cx="59" cy="200" r="9" fill="#75F5E7" fill-opacity=".3" stroke="#08979D" stroke-width="2"/>
+      <circle cx="101" cy="267" r="9" fill="#FF7BB8" fill-opacity=".25" stroke="#CC6A9B" stroke-width="2"/>
+      <circle cx="19" cy="267" r="9" fill="#F9D86D" fill-opacity=".3" stroke="#B38A1B" stroke-width="2"/>
+      <text x="55" y="204" fill="#081C2A" font-size="8" font-weight="800">O</text>
+      <text x="97" y="271" fill="#081C2A" font-size="8" font-weight="800">H</text>
+      <text x="15" y="271" fill="#081C2A" font-size="8" font-weight="800">H</text>
+    </svg>
+  </div>
+  <header class="lab-header">
+    <h1 class="title">SeanTheAtom</h1>
+    <p class="lab-kicker">An interactive chemistry lab simulator</p>
+  </header>
+
+<nav class="lab-nav" aria-label="Primary navigation">
+  <div class="navbar navbar-expand-lg navbar-dark" style="display: flex; align-items: center; gap: 0.45rem; white-space: nowrap; flex-wrap: nowrap;">
+  <a class="navbar-brand" href="#" style="white-space: nowrap; margin-right: 0.25rem;">The Lab</a>
+  <a class="lab-nav-cta" href="#look-section" style="white-space: nowrap; line-height: 1.1;">Balancing Chemical Equations</a>
+  <a href="#mole-ratios-section" style="display: inline-flex; align-items: center; justify-content: center; height: 2.2rem; padding: 0 0.8rem; border-radius: 0.65rem; background: rgba(249,216,109,0.12); border: 1px solid rgba(249,216,109,0.7); color: #f9d86d; text-decoration: none; font-weight: 800; letter-spacing: 0.02em; font-size: 0.76rem; line-height: 1; white-space: nowrap;">Mole Ratios</a>
+  <a href="#limiting-percent-section" style="display: inline-flex; align-items: center; justify-content: center; height: 2.2rem; padding: 0 0.8rem; border-radius: 0.65rem; background: rgba(255,123,184,0.12); border: 1px solid rgba(255,123,184,0.7); color: #ff7bb8; text-decoration: none; font-weight: 800; letter-spacing: 0.02em; font-size: 0.76rem; line-height: 1; white-space: nowrap;">Yield</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#look-section">Look</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+  <form id="site-search-form" class="lab-nav__search" role="search">
+    <label class="visually-hidden" for="site-search">Search this page</label>
+    <input id="site-search" type="search" placeholder="Search this page" autocomplete="off">
+    <button type="submit">Search</button>
+    <span id="site-search-status" class="visually-hidden" aria-live="polite"></span>
+  </form>
+</div>
+</nav>
+
+
+
+<div style="display: flex; align-items: flex-start; justify-content: center; gap: 1.25rem; transform: translateX(-80px);">
+
+    <!-- Your Div Box (Width adjusted so they both fit) -->
+    <div class="experiment-box" style="background-color: var(--lab-ink); margin: 1rem 0 0 0; width: 70%; border-radius: 0.5rem; padding: 1rem; transform: translateX(1rem);"> 
+        <h3 style="text-align: left; margin-left: 2.25rem; font-size: 2.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem;">About the Coder</h3> 
+        <p style="font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-size: 0.98rem; line-height: 1.8; letter-spacing: 0.01em; font-weight: 300; margin: 1.25rem 2.25rem 1.25rem 2.25rem; text-align: justify;">Hello, I'm Sean Ocanada, an aspiring Grade 12 student with a goal to share a simple by ever so reliable studying framework I've used to learn Chemistry.🧪✨ Using a simple acronym of <i><strong>"LEAP"</strong></i> I hope you too can unlock the beauty and fun of learning Chemistry.
+          <br>
+        </p> 
+    </div> 
+
+    <!-- Your Image -->
+    <img class="experiment-image" src="Screenshot 2026-09-22 110517.png" 
+          alt="Its me hehe"
+          style="transform: translateX(1rem); margin-top: 0.4rem;">
+
+<div class="experiment-headings" style="transform: translateX(3rem); display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem;">
+  <div style="background: var(--lab-ink); border: 3px solid rgba(127,242,154,0.9); border-radius: 0.9rem; padding: 0.35rem 1rem; box-shadow: 0 8px 18px rgba(0,0,0,0.18);">
+    <h1 style="font-size:3.3rem; color: #7ff29a; margin: 0; font-weight: 800; -webkit-text-stroke: 1px rgba(0,0,0,0.5);">L - Look</h1>
+  </div>
+
+  <div style="background: var(--lab-ink); border: 3px solid rgba(255,123,184,0.9); border-radius: 0.9rem; padding: 0.35rem 1rem; box-shadow: 0 8px 18px rgba(0,0,0,0.18);">
+    <h2 style="font-size:3.3rem; color: #ff7bb8; margin: 0; font-weight: 800; -webkit-text-stroke: 1px rgba(0,0,0,0.5);">E - Expand</h2>
+  </div>
+
+  <div style="background: var(--lab-ink); border: 3px solid rgba(249,216,109,0.9); border-radius: 0.9rem; padding: 0.35rem 1rem; box-shadow: 0 8px 18px rgba(0,0,0,0.18);">
+    <h3 style="font-size:3.3rem; color: #f9d86d; margin: 0; font-weight: 800; -webkit-text-stroke: 1px rgba(0,0,0,0.5);">A - Answer</h3>
+  </div>
+
+  <div style="background: var(--lab-ink); border: 3px solid rgba(117,245,231,0.9); border-radius: 0.9rem; padding: 0.35rem 1rem; box-shadow: 0 8px 18px rgba(0,0,0,0.18);">
+    <h3 style="font-size:3.3rem; color: #75f5e7; margin: 0; font-weight: 800; -webkit-text-stroke: 1px rgba(0,0,0,0.5);">P - Play</h3>
+  </div>
+</div>
+</div>
+
+<br>
+<br>
+<br>
+
+<section style="padding: 2rem 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center; color: #2a2525; letter-spacing: 0.02em;">📚The <i>L.E.A.P</i> Framework💻</h2>
+
+    <div style="position: relative; max-width: 980px; margin: 0 auto; padding: 0 2.2rem;">
+      <button id="prevLeap" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 42px; height: 42px; border: none; border-radius: 50%; background: rgba(22, 25, 36, 0.9); color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8249;</button>
+
+      <div id="leapCarousel" style="overflow: hidden; border-radius: 1rem; margin: 0 1rem;">
+        <div id="leapTrack" style="display: flex; transition: transform 0.35s ease;">
+          <div style="min-width: 100%; background: rgba(13, 18, 33, 0.92); border: 1px solid rgba(117,245,231,0.75); border-radius: 1rem; padding: 1.75rem 1.5rem; color: #f6f7fb; box-shadow: 0 6px 16px rgba(0,0,0,0.18); box-sizing: border-box;">
+            <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1.5rem; align-items: center;">
+              <div>
+                <h3 style="font-size: 2.8rem; font-weight: 700; margin: 0 0 0.9rem; color: #7ff29a;">Look</h3>
+                <p style="font-size: 1.28rem; line-height: 1.8; margin: 0; font-weight: 400; color: #eef3ff;">Establishes an initial mental scaffold. Visuals and audio lower the cognitive load required to grasp abstract concepts (like chemical reactions or mole ratios) before you touch a textbook.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(117,245,231,0.5); border-radius: 1rem; padding: 0.75rem; display: flex; align-items: center; justify-content: center; min-height: 220px;">
+                <img src="b0fee33d7a8e955e72da5d06e6713e43.gif" alt="Look example" style="width: 100%; max-width: 300px; height: auto; border-radius: 0.75rem; display: block;">
+              </div>
+            </div>
+          </div>
+
+          <div style="min-width: 100%; background: rgba(13, 18, 33, 0.92); border: 1px solid rgba(255,92,168,0.75); border-radius: 1rem; padding: 1.75rem 1.5rem; color: #f6f7fb; box-shadow: 0 6px 16px rgba(0,0,0,0.18); box-sizing: border-box;">
+            <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1.5rem; align-items: center;">
+              <div>
+                <h3 style="font-size: 2.8rem; font-weight: 700; margin: 0 0 0.9rem; color: #ff7bb8;">Expand</h3>
+                <p style="font-size: 1.28rem; line-height: 1.8; margin: 0; font-weight: 400; color: #eef3ff;">Transcribes passive viewing into active learning. Summarizing forced material into your own words forces your brain to encode information into long-term memory rather than letting it slip past as short-term noise.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,123,184,0.5); border-radius: 1rem; padding: 0.75rem; display: flex; align-items: center; justify-content: center; min-height: 220px;">
+                <img src="./%23iaart%20%23fofura.jpg" alt="Expand example" style="width: 100%; max-width: 300px; height: auto; max-height: 180px; object-fit: cover; border-radius: 0.75rem; display: block;">
+              </div>
+            </div>
+          </div>
+
+          <div style="min-width: 100%; background: rgba(13, 18, 33, 0.92); border: 1px solid rgba(246,207,88,0.75); border-radius: 1rem; padding: 1.75rem 1.5rem; color: #f6f7fb; box-shadow: 0 6px 16px rgba(0,0,0,0.18); box-sizing: border-box;">
+            <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1.5rem; align-items: center;">
+              <div>
+                <h3 style="font-size: 2.8rem; font-weight: 700; margin: 0 0 0.9rem; color: #f9d86d;">Answer</h3>
+                <p style="font-size: 1.28rem; line-height: 1.8; margin: 0; font-weight: 400; color: #eef3ff;">Leverages <strong>Retrieval Practice</strong> and the <strong>Feynman Technique</strong>. Pulling information out of your brain (without peeking at notes) strengthens neural pathways far better than simply re-reading notes ever will.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(249,216,109,0.5); border-radius: 1rem; padding: 0.75rem; display: flex; align-items: center; justify-content: center; min-height: 220px;">
+                <img src="b8e705ca7c0ebf8d38015fd32bb77b89.jpg" alt="Answer example" style="width: 100%; max-width: 300px; height: auto; border-radius: 0.75rem; display: block;">
+              </div>
+            </div>
+          </div>
+
+          <div style="min-width: 100%; background: rgba(13, 18, 33, 0.92); border: 1px solid rgba(127,242,154,0.75); border-radius: 1rem; padding: 1.75rem 1.5rem; color: #f6f7fb; box-shadow: 0 6px 16px rgba(0,0,0,0.18); box-sizing: border-box;">
+            <div style="display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 1.5rem; align-items: center;">
+              <div>
+                <h3 style="font-size: 2.8rem; font-weight: 700; margin: 0 0 0.9rem; color: #75f5e7;">Play</h3>
+                <p style="font-size: 1.28rem; line-height: 1.8; margin: 0; font-weight: 400; color: #eef3ff;">Applies <strong>Active Problem-Solving</strong> and high-feedback learning. Interacting with dynamic models (like web tools or stoichiometry simulations) forces you to test edge cases, spot missing knowledge, and solidify conceptual mastery.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(117,245,231,0.5); border-radius: 1rem; padding: 0.75rem; display: flex; align-items: center; justify-content: center; min-height: 220px;">
+                <img src="Kotek%20%C5%82owi%20w%20ifonie.gif" alt="Play example" style="width: 100%; max-width: 300px; height: auto; border-radius: 0.75rem; display: block;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button id="nextLeap" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 42px; height: 42px; border: none; border-radius: 50%; background: rgba(22, 25, 36, 0.9); color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8250;</button>
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 0.6rem; margin-top: 1rem;">
+      <button class="leap-dot active" type="button" data-index="0" style="width: 12px; height: 12px; border: none; border-radius: 50%; background: rgba(42,37,37,0.7); cursor: pointer;"></button>
+      <button class="leap-dot" type="button" data-index="1" style="width: 12px; height: 12px; border: none; border-radius: 50%; background: rgba(42,37,37,0.35); cursor: pointer;"></button>
+      <button class="leap-dot" type="button" data-index="2" style="width: 12px; height: 12px; border: none; border-radius: 50%; background: rgba(42,37,37,0.35); cursor: pointer;"></button>
+      <button class="leap-dot" type="button" data-index="3" style="width: 12px; height: 12px; border: none; border-radius: 50%; background: rgba(42,37,37,0.35); cursor: pointer;"></button>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="look-section" style="padding: 2rem 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(117,245,231,0.75); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topic 1</p>
+      <h3 style="margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #eef3ff;">Balancing Chemical Equations</h3>
+    </div>
+    <div style="padding: 1rem 2rem 0;">
+      <h2 style="font-size: 2.8rem; font-weight: 700; margin: 0; color: #7ff29a; letter-spacing: 0.02em;">Look</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.5rem; padding: 1.75rem 2rem 2rem; align-items: start;">
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(117,245,231,0.3); border-radius: 1rem; padding: 0.75rem;">
+        <a href="https://youtu.be/X7ckfeRjjvI?si=lzHB7otMFqij12J9" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 0.9rem; overflow: hidden; background: #000;">
+            <img src="https://img.youtube.com/vi/X7ckfeRjjvI/hqdefault.jpg" alt="Professor Dave balancing chemical equations thumbnail" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.1));"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); border: 2px solid rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0,0,0,0.25);">
+              <div style="width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid white; margin-left: 6px;"></div>
+            </div>
+          </div>
+        </a>
+        <div style="margin-top: 0.75rem; text-align: center;">
+          <a href="https://youtu.be/X7ckfeRjjvI?si=lzHB7otMFqij12J9" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.7rem 1rem; border-radius: 0.5rem; background: rgba(117,245,231,0.15); border: 1px solid rgba(117,245,231,0.6); color: #eef3ff; font-weight: 700; text-decoration: none;">Watch on YouTube</a>
+        </div>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(117,245,231,0.3); border-radius: 1rem; padding: 1.25rem 1.25rem 1rem; color: #eef3ff;">
+        <div style="margin-top: 0.1rem; margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;">
+          <span style="font-size: 1.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #ff7bb8; line-height: 1.1;">Expand</span>
+          <br>
+          <h4 style="font-size: 1.2rem; font-weight: 700; margin: 0; color: #7ff29a;">Key Rules for Balancing</h4>
+        </div>
+        <ul style="margin: 0; padding-left: 1.2rem; font-size: 1.03rem; line-height: 1.8; color: #eef3ff;">
+          <li><strong style="color: #7ff29a;">Law of Conservation of Mass:</strong> Total mass of reactants = total mass of products.</li>
+          <li><strong style="color: #7ff29a;">Subscripts vs. Coefficients:</strong> Change <em>coefficients</em> (numbers in front) to balance atoms; never change <em>subscripts</em> (small numbers in formulas).</li>
+          <li><strong style="color: #7ff29a;">Strategy:</strong> Count atoms on both sides, balance polyatomic ions as single units if unchanged, and save individual elements like O₂ or H₂ for last.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz-section" class="quiz-section" style="padding: 0 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(249,216,109,0.7); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.25rem 1.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topic 1 · Knowledge Check</p>
+      <h2 style="font-size: 2.2rem; font-weight: 700; margin: 0; color: #f9d86d; letter-spacing: 0.02em;">Balancing Chemical Equations Quiz</h2>
+    </div>
+    <div style="padding: 0.9rem 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <div style="font-size: 1rem; font-weight: 700; color: #eef3ff;">
+        Score: <span id="quizScore" style="color: #f9d86d; font-size: 1.35rem;">0</span>/<span id="quizTotal" style="color: #f9d86d; font-size: 1.35rem;">0</span>
+      </div>
+      <div id="quizStatus" style="font-size: 0.9rem; color: #cfeaf7; font-weight: 600;">Progress: 0/10 answered</div>
+    </div>
+    <div style="padding: 1rem 1.25rem 1.25rem;">
+      <div style="position: relative; max-width: 900px; margin: 0 auto; padding: 0 2.2rem;">
+        <button id="prevQuiz" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8249;</button>
+        <div id="quizCarousel" style="overflow: hidden; border-radius: 1rem; margin: 0 1rem;">
+          <div id="quizTrack" style="display: flex; transition: transform 0.35s ease;"></div>
+        </div>
+        <button id="nextQuiz" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8250;</button>
+      </div>
+      <div id="quizDots" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="mass-lab" aria-labelledby="mass-lab-title">
+  <div class="mass-lab__header">
+    <div>
+      <p class="division-topic-label">Topic 1 · Balancing Chemical Equations</p>
+      <p class="mass-lab__eyebrow">P — Play</p>
+      <h2 id="mass-lab-title">Balance the reaction</h2>
+      <p class="mass-lab__instructions">Change the coefficients until the reactant and product masses match.</p>
+    </div>
+    <p class="mass-lab__score">Score: <span id="balanceLabScore">0</span></p>
+  </div>
+
+  <div class="mass-lab__controls">
+    <label for="balanceLabReaction">Choose a reaction</label>
+    <select id="balanceLabReaction"></select>
+  </div>
+
+  <div class="mass-lab__content">
+    <div id="balanceLabEquation" class="mass-lab__equation" aria-live="polite"></div>
+    <p id="balanceLabStatus" class="mass-lab__status">Enter the correct coefficients to begin.</p>
+    <canvas id="balanceLabCanvas" class="mass-lab__canvas" aria-label="Animated atoms"></canvas>
+
+    <div class="mass-lab__stats">
+      <span>Reactants: <strong id="balanceLabReactantMass">0 g</strong></span>
+      <span>Products: <strong id="balanceLabProductMass">0 g</strong></span>
+    </div>
+
+    <div class="mass-lab__actions">
+      <button id="balanceLabReact" type="button" disabled>React</button>
+      <button id="balanceLabNext" type="button">Next challenge</button>
+    </div>
+  </div>
+</section>
+
+<section id="mole-ratios-section" style="padding: 0 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(117,245,231,0.75); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topic 2</p>
+      <h3 style="margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #eef3ff;">Mole Ratios &amp; Conversions</h3>
+    </div>
+    <div class="learning-look-heading">
+      <h2>Look</h2>
+      <p>Learn how to use balanced-equation mole ratios as a recipe for converting reactants to products.</p>
+    </div>
+
+    <div class="learning-look-content">
+      <div class="learning-video">
+        <a href="https://youtu.be/c9beXPzJ-Fs?si=pwW8hGRsqsu7-kJF" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 0.9rem; overflow: hidden; background: #000;">
+            <img src="https://img.youtube.com/vi/c9beXPzJ-Fs/hqdefault.jpg" alt="Mole ratios and conversions lesson thumbnail" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.1));"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); border: 2px solid rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0,0,0,0.25);">
+              <div style="width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid white; margin-left: 6px;"></div>
+            </div>
+          </div>
+        </a>
+        <div style="margin-top: 0.75rem; text-align: center;">
+          <a href="https://youtu.be/c9beXPzJ-Fs?si=pwW8hGRsqsu7-kJF" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.7rem 1rem; border-radius: 0.5rem; background: rgba(117,245,231,0.15); border: 1px solid rgba(117,245,231,0.6); color: #eef3ff; font-weight: 700; text-decoration: none;">Watch on YouTube</a>
+        </div>
+      </div>
+
+      <div class="learning-notes">
+        <h4>Core Notes · Topic 2</h4>
+        <p><strong>Target:</strong> Master stoichiometric unit conversions using balanced chemical equations and mole-to-mole bridges.</p>
+        <p><strong>Key action:</strong> Convert starting units to moles, apply the mole ratio, then convert to the target units.</p>
+
+        <h5>1. Moles-to-mass conversion</h5>
+        <div class="learning-formula-grid">
+          <div class="learning-formula"><strong>Find moles from mass</strong><span>n = <span class="learning-fraction"><span>m</span><span>M</span></span></span></div>
+          <div class="learning-formula"><strong>Find mass from moles</strong><span>m = n × M</span></div>
+        </div>
+        <p class="learning-note">n = moles; m = mass in grams; M = molar mass in g/mol.</p>
+
+        <h5>2. Mole-ratio bridge from a balanced equation</h5>
+        <div class="learning-formula"><span>Moles of B = Moles of A × <span class="learning-fraction"><span>Coefficient of B</span><span>Coefficient of A</span></span></span></div>
+        <p class="learning-note">Choose the ratio orientation so the starting substance cancels and the target substance remains.</p>
+
+        <h5>3. Complete dimensional-analysis conversion chain</h5>
+        <div class="learning-formula learning-formula--chain"><span>Mass B (g) = Mass A (g) × <span class="learning-fraction"><span>1 mol A</span><span>Molar mass A (g)</span></span> × <span class="learning-fraction"><span>Mole ratio B</span><span>Mole ratio A</span></span> × <span class="learning-fraction"><span>Molar mass B (g)</span><span>1 mol B</span></span></span></div>
+        <p class="learning-note">The units cancel in sequence: g A → mol A → mol B → g B.</p>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<section id="topic2-quiz-section" class="quiz-section" style="padding: 0 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(249,216,109,0.7); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.25rem 1.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topic 2 · Knowledge Check</p>
+      <h2 style="font-size: 2.2rem; font-weight: 700; margin: 0; color: #f9d86d; letter-spacing: 0.02em;">Mole Ratios &amp; Stoichiometry Quiz</h2>
+    </div>
+    <div style="padding: 0.9rem 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <div style="font-size: 1rem; font-weight: 700; color: #eef3ff;">
+        Score: <span id="topic2QuizScore" style="color: #f9d86d; font-size: 1.35rem;">0</span>/<span id="topic2QuizTotal" style="color: #f9d86d; font-size: 1.35rem;">0</span>
+      </div>
+      <div id="topic2QuizStatus" style="font-size: 0.9rem; color: #cfeaf7; font-weight: 600;">Progress: 0/10 answered</div>
+    </div>
+    <div style="padding: 1rem 1.25rem 1.25rem;">
+      <div style="position: relative; max-width: 900px; margin: 0 auto; padding: 0 2.2rem;">
+        <button id="prevTopic2Quiz" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8249;</button>
+        <div id="topic2QuizCarousel" style="overflow: hidden; border-radius: 1rem; margin: 0 1rem;">
+          <div id="topic2QuizTrack" style="display: flex; transition: transform 0.35s ease;"></div>
+        </div>
+        <button id="nextTopic2Quiz" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8250;</button>
+      </div>
+      <div id="topic2QuizDots" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="mole-play" id="mole-play" aria-labelledby="mole-play-title">
+    <div class="mole-play__heading">
+      <div>
+        <p class="division-topic-label">Topic 2 · Mole Ratios &amp; Conversions</p>
+        <p class="mole-play__eyebrow">P — Play</p>
+        <h2 id="mole-play-title">Mole Ratios &amp; Conversions</h2>
+        <p>Explore the ratios, build a conversion factor, then run a full grams-to-grams pipeline.</p>
+      </div>
+      <span class="mole-play__badge">3 interactive steps</span>
+    </div>
+
+    <div class="mole-play__step-nav" role="tablist" aria-label="Activity steps">
+      <button id="mole-slide-tab-1" class="mole-play__step is-active" type="button" role="tab" aria-selected="true" aria-controls="mole-slide-1" data-slide="0"><span>01</span> Simulator</button>
+      <button id="mole-slide-tab-2" class="mole-play__step" type="button" role="tab" aria-selected="false" aria-controls="mole-slide-2" data-slide="1"><span>02</span> Guided practice</button>
+      <button id="mole-slide-tab-3" class="mole-play__step" type="button" role="tab" aria-selected="false" aria-controls="mole-slide-3" data-slide="2"><span>03</span> Master challenge</button>
+    </div>
+
+    <div class="mole-play__slides">
+      <article class="mole-play__slide is-active" id="mole-slide-1" role="tabpanel" aria-labelledby="mole-slide-tab-1">
+        <div class="mole-play__slide-heading">
+          <div><p class="mole-play__eyebrow">Step 1 · Explore</p><h3>Interactive real-time simulator</h3></div>
+          <label class="mole-play__reaction-label" for="mole-reaction">Balanced reaction
+            <select id="mole-reaction">
+              <option value="propane">C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O</option>
+              <option value="ammonia">N₂ + 3 H₂ → 2 NH₃</option>
+              <option value="water">2 H₂ + O₂ → 2 H₂O</option>
+              <option value="methane">CH₄ + 2 O₂ → CO₂ + 2 H₂O</option>
+              <option value="salt">2 Na + Cl₂ → 2 NaCl</option>
+              <option value="iron-oxide">4 Fe + 3 O₂ → 2 Fe₂O₃</option>
+              <option value="hydrogen-chloride">H₂ + Cl₂ → 2 HCl</option>
+              <option value="carbon-dioxide">C + O₂ → CO₂</option>
+              <option value="potassium-chlorate">2 KClO₃ → 2 KCl + 3 O₂</option>
+              <option value="calcium-carbonate">CaCO₃ → CaO + CO₂</option>
+            </select>
+          </label>
+        </div>
+        <p class="mole-play__hint">Edit any substance. Every amount updates to preserve the balanced-equation mole ratio.</p>
+        <div class="mole-play__balanced-equation" aria-live="polite">
+          <span class="mole-play__bridge-label">Balanced chemical equation</span>
+          <strong id="mole-sim-balanced-equation"></strong>
+        </div>
+        <div id="mole-sim-equation" class="mole-play__equation" aria-live="polite"></div>
+        <div class="mole-play__bridge" aria-live="polite">
+          <span class="mole-play__bridge-label">Dimensional analysis bridge</span>
+          <div id="mole-sim-factor" class="mole-play__fraction"></div>
+          <span id="mole-sim-bridge-copy" class="mole-play__bridge-copy"></span>
+        </div>
+        <div class="mole-play__example" id="mole-sim-example"></div>
+        <div class="mole-play__visual">
+          <div class="mole-play__visual-heading"><span>Relative mole amounts</span><span>Particle view · capped for display</span></div>
+          <div id="mole-sim-particles" class="mole-play__particles" aria-live="polite"></div>
+        </div>
+      </article>
+
+      <article class="mole-play__slide" id="mole-slide-2" role="tabpanel" aria-labelledby="mole-slide-tab-2" hidden>
+        <div class="mole-play__slide-heading">
+          <div><p class="mole-play__eyebrow">Step 2 · Build</p><h3>Guided practice</h3></div>
+          <button id="mole-practice-new" class="mole-play__button mole-play__button--quiet" type="button">New question</button>
+        </div>
+        <p id="mole-practice-prompt" class="mole-play__prompt"></p>
+        <div class="mole-play__balanced-equation" aria-live="polite">
+          <span class="mole-play__bridge-label">Balanced equation for this question</span>
+          <strong id="mole-practice-equation"></strong>
+        </div>
+        <p class="mole-play__hint">Build the factor so the given unit cancels. Drag a tile into a slot, or select a tile and click a slot.</p>
+        <div class="mole-play__work" id="mole-practice-work">
+          <div class="mole-play__given" id="mole-practice-given"></div>
+          <span class="mole-play__multiply" aria-hidden="true">×</span>
+          <div class="mole-play__practice-factor">
+            <button class="mole-play__slot" type="button" data-practice-slot="numerator" aria-label="Numerator slot">Numerator</button>
+            <span class="mole-play__fraction-rule"></span>
+            <button class="mole-play__slot" type="button" data-practice-slot="denominator" aria-label="Denominator slot">Denominator</button>
+          </div>
+          <span class="mole-play__equals" aria-hidden="true">=</span>
+          <button class="mole-play__slot mole-play__answer-slot" type="button" data-practice-slot="answer" aria-label="Final answer slot">Final answer</button>
+        </div>
+        <div class="mole-play__tile-area">
+          <span class="mole-play__bridge-label">Tile bank</span>
+          <div id="mole-practice-tiles" class="mole-play__tiles"></div>
+        </div>
+        <div class="mole-play__actions">
+          <button id="mole-practice-check" class="mole-play__button" type="button">Check answer</button>
+          <button id="mole-practice-clear" class="mole-play__button mole-play__button--quiet" type="button">Clear slots</button>
+        </div>
+        <p id="mole-practice-feedback" class="mole-play__feedback" aria-live="polite"></p>
+      </article>
+
+      <article class="mole-play__slide" id="mole-slide-3" role="tabpanel" aria-labelledby="mole-slide-tab-3" hidden>
+        <div class="mole-play__slide-heading">
+          <div><p class="mole-play__eyebrow">Step 3 · Master</p><h3>Multi-step conversion pipeline</h3></div>
+          <div class="mole-play__scoreboard"><span>Score <strong id="mole-challenge-score">0</strong></span><span>Streak <strong id="mole-challenge-streak">0</strong> 🔥</span></div>
+        </div>
+        <p id="mole-challenge-prompt" class="mole-play__prompt"></p>
+        <div class="mole-play__balanced-equation" aria-live="polite">
+          <span class="mole-play__bridge-label">Balanced equation for this question</span>
+          <strong id="mole-challenge-equation"></strong>
+        </div>
+        <p id="mole-challenge-molar-masses" class="mole-play__hint"></p>
+        <p class="mole-play__hint">Follow the calculation from left to right. Strike-through marks show matching units canceling.</p>
+        <div class="mole-play__written-pipeline" id="mole-challenge-pipeline" role="region" aria-label="Dimensional analysis setup" tabindex="0">
+          <label class="mole-play__answer-input" for="mole-challenge-given">Given mass
+            <span class="mole-play__unit is-cancelled" id="mole-challenge-given-unit"></span>
+            <input id="mole-challenge-given" type="number" min="0" step="any" inputmode="decimal" placeholder="Value">
+          </label>
+          <span class="mole-play__pipeline-operator" aria-hidden="true">×</span>
+          <div class="mole-play__written-factor">
+            <span class="mole-play__bridge-label">Grams → moles</span>
+            <label><input id="mole-challenge-source-numerator" type="number" min="0" step="any" inputmode="decimal" aria-label="Grams-to-moles numerator" placeholder="Value"> <span class="mole-play__unit is-cancelled" id="mole-challenge-source-numerator-unit"></span></label>
+            <span class="mole-play__fraction-rule"></span>
+            <label><input id="mole-challenge-source-denominator" type="number" min="0" step="any" inputmode="decimal" aria-label="Grams-to-moles denominator" placeholder="Value"> <span class="mole-play__unit is-cancelled" id="mole-challenge-source-denominator-unit"></span></label>
+          </div>
+          <span class="mole-play__pipeline-operator" aria-hidden="true">×</span>
+          <div class="mole-play__written-factor">
+            <span class="mole-play__bridge-label">Mole ratio</span>
+            <label><input id="mole-challenge-mole-numerator" type="number" min="0" step="any" inputmode="decimal" aria-label="Mole-ratio numerator" placeholder="Value"> <span class="mole-play__unit is-cancelled" id="mole-challenge-mole-numerator-unit"></span></label>
+            <span class="mole-play__fraction-rule"></span>
+            <label><input id="mole-challenge-mole-denominator" type="number" min="0" step="any" inputmode="decimal" aria-label="Mole-ratio denominator" placeholder="Value"> <span class="mole-play__unit is-cancelled" id="mole-challenge-mole-denominator-unit"></span></label>
+          </div>
+          <span class="mole-play__pipeline-operator" aria-hidden="true">×</span>
+          <div class="mole-play__written-factor">
+            <span class="mole-play__bridge-label">Moles → grams</span>
+            <label><input id="mole-challenge-product-numerator" type="number" min="0" step="any" inputmode="decimal" aria-label="Moles-to-grams numerator" placeholder="Value"> <span id="mole-challenge-product-numerator-unit"></span></label>
+            <span class="mole-play__fraction-rule"></span>
+            <label><input id="mole-challenge-product-denominator" type="number" min="0" step="any" inputmode="decimal" aria-label="Moles-to-grams denominator" placeholder="Value"> <span class="mole-play__unit is-cancelled" id="mole-challenge-product-denominator-unit"></span></label>
+          </div>
+          <span class="mole-play__pipeline-operator" aria-hidden="true">=</span>
+          <label class="mole-play__answer-input" for="mole-challenge-answer">Product mass
+            <span id="mole-challenge-answer-unit"></span>
+            <input id="mole-challenge-answer" type="number" min="0" step="any" inputmode="decimal" placeholder="Answer">
+          </label>
+        </div>
+        <div class="mole-play__actions">
+          <button id="mole-challenge-check" class="mole-play__button" type="button">Check pipeline</button>
+          <button id="mole-challenge-next" class="mole-play__button mole-play__button--quiet" type="button">Next question</button>
+        </div>
+        <p id="mole-challenge-feedback" class="mole-play__feedback" aria-live="polite"></p>
+        <section class="mole-challenge-calculator" aria-labelledby="mole-calculator-title">
+          <div class="mole-challenge-calculator__heading">
+            <div>
+              <h4 id="mole-calculator-title">Scientific calculator</h4>
+              <p>Trigonometric functions use degrees.</p>
+            </div>
+            <button type="button" class="mole-play__button mole-play__button--quiet" data-calculator-action="clear">Clear</button>
+          </div>
+          <output id="mole-calculator-display" class="mole-calculator__display" aria-live="polite" aria-label="Calculator display">0</output>
+          <div class="mole-calculator__keys" aria-label="Scientific calculator keys">
+            <button type="button" data-calculator-insert="(">(</button>
+            <button type="button" data-calculator-insert=")">)</button>
+            <button type="button" data-calculator-function="sin">sin</button>
+            <button type="button" data-calculator-function="cos">cos</button>
+            <button type="button" data-calculator-function="tan">tan</button>
+            <button type="button" data-calculator-operator="/">÷</button>
+            <button type="button" data-calculator-digit="7">7</button>
+            <button type="button" data-calculator-digit="8">8</button>
+            <button type="button" data-calculator-digit="9">9</button>
+            <button type="button" data-calculator-operator="*">×</button>
+            <button type="button" data-calculator-function="sqrt">√</button>
+            <button type="button" data-calculator-operator="^">xʸ</button>
+            <button type="button" data-calculator-digit="4">4</button>
+            <button type="button" data-calculator-digit="5">5</button>
+            <button type="button" data-calculator-digit="6">6</button>
+            <button type="button" data-calculator-operator="-">−</button>
+            <button type="button" data-calculator-function="ln">ln</button>
+            <button type="button" data-calculator-function="log">log</button>
+            <button type="button" data-calculator-digit="1">1</button>
+            <button type="button" data-calculator-digit="2">2</button>
+            <button type="button" data-calculator-digit="3">3</button>
+            <button type="button" data-calculator-operator="+">+</button>
+            <button type="button" data-calculator-insert="pi">π</button>
+            <button type="button" data-calculator-insert="e">e</button>
+            <button type="button" data-calculator-digit="0" class="mole-calculator__zero">0</button>
+            <button type="button" data-calculator-action="decimal">.</button>
+            <button type="button" data-calculator-action="backspace" aria-label="Backspace">⌫</button>
+            <button type="button" data-calculator-insert="Ans">Ans</button>
+            <button type="button" data-calculator-action="equals" class="mole-calculator__equals">=</button>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <div class="mole-play__footer">
+      <button id="mole-play-previous" class="mole-play__button mole-play__button--quiet" type="button" disabled>← Previous</button>
+      <span id="mole-play-progress" aria-live="polite">Step 1 of 3</span>
+      <button id="mole-play-next" class="mole-play__button" type="button">Next →</button>
+    </div>
+  </section>
+
+
+<section id="limiting-percent-section" style="padding: 0 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(117,245,231,0.75); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topics 3 &amp; 4</p>
+      <h3 style="margin: 0; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #eef3ff;">Limiting Reactants &amp; Percent Yield</h3>
+    </div>
+    <div class="learning-look-heading">
+      <h2>Look</h2>
+      <p>Identify which reactant runs out first to limit product formation and calculate how much leftover material remains.</p>
+    </div>
+
+    <div class="learning-look-content">
+      <div class="learning-video">
+        <a href="https://youtu.be/dodsvTfqWNc?si=u_7Y3XOahPIakkFs" target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; border-radius: 0.9rem; overflow: hidden; background: #000;">
+            <img src="https://img.youtube.com/vi/dodsvTfqWNc/hqdefault.jpg" alt="Limiting reactants and percent yield lesson thumbnail" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.1));"></div>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.18); border: 2px solid rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0,0,0,0.25);">
+              <div style="width: 0; height: 0; border-top: 14px solid transparent; border-bottom: 14px solid transparent; border-left: 22px solid white; margin-left: 6px;"></div>
+            </div>
+          </div>
+        </a>
+        <div style="margin-top: 0.75rem; text-align: center;">
+          <a href="https://youtu.be/dodsvTfqWNc?si=u_7Y3XOahPIakkFs" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.7rem 1rem; border-radius: 0.5rem; background: rgba(117,245,231,0.15); border: 1px solid rgba(117,245,231,0.6); color: #eef3ff; font-weight: 700; text-decoration: none;">Watch on YouTube</a>
+        </div>
+      </div>
+
+      <div class="learning-notes">
+        <h4>Core Notes · Topics 3 &amp; 4</h4>
+        <p><strong>Target:</strong> Identify the limiting reactant to determine the maximum theoretical product yield and measure reaction efficiency.</p>
+        <p><strong>Key action:</strong> Calculate the expected product yield from every starting reactant. The smaller output identifies the limiting reactant and sets the theoretical yield.</p>
+
+        <h5>1. Limiting reactant and theoretical yield</h5>
+        <p>Convert each reactant's starting mass to the same product. Use the balanced-equation coefficients and molar masses:</p>
+        <div class="learning-formula-grid">
+          <div class="learning-formula"><strong>Yield from Reactant A</strong><span>Yield<sub>A</sub> = Mass A (g) × <span class="learning-fraction"><span>1 mol A</span><span>M<sub>A</sub> (g)</span></span> × <span class="learning-fraction"><span>mol Product</span><span>mol A</span></span> × M<sub>Product</sub> (g/mol)</span></div>
+          <div class="learning-formula"><strong>Yield from Reactant B</strong><span>Yield<sub>B</sub> = Mass B (g) × <span class="learning-fraction"><span>1 mol B</span><span>M<sub>B</sub> (g)</span></span> × <span class="learning-fraction"><span>mol Product</span><span>mol B</span></span> × M<sub>Product</sub> (g/mol)</span></div>
+        </div>
+        <p class="learning-rule"><strong>Rule:</strong> The smaller calculated product amount is the theoretical yield. The reactant that produces it is the limiting reactant.</p>
+
+        <h5>2. Excess reactant remaining</h5>
+        <div class="learning-formula"><span>Excess remaining (g) = Initial mass of excess (g) − Mass of excess consumed (g)</span></div>
+
+        <h5>3. Percent yield</h5>
+        <div class="learning-formula"><span>Percent yield = <span class="learning-fraction"><span>Actual yield</span><span>Theoretical yield</span></span> × 100%</span></div>
+        <p class="learning-note">Actual yield is the amount of product measured in the lab; theoretical yield is the maximum product amount predicted from the limiting reactant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="limiting-yield-quiz-section" class="quiz-section" style="padding: 0 1.5rem 4rem; font-family: 'Inter', 'Segoe UI', Arial, sans-serif;">
+  <div style="max-width: 1100px; margin: 0 auto; background: rgba(13, 18, 33, 0.94); border: 1px solid rgba(249,216,109,0.7); border-radius: 1.25rem; box-shadow: 0 10px 24px rgba(0,0,0,0.18); overflow: hidden;">
+    <div style="padding: 1.25rem 1.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <p class="division-topic-label">Topics 3 &amp; 4 · Knowledge Check</p>
+      <h2 style="font-size: 2.2rem; font-weight: 700; margin: 0; color: #f9d86d; letter-spacing: 0.02em;">Limiting Reactants &amp; Percent Yield Quiz</h2>
+    </div>
+    <div style="padding: 0.9rem 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <div style="font-size: 1rem; font-weight: 700; color: #eef3ff;">
+        Score: <span id="limitingYieldQuizScore" style="color: #f9d86d; font-size: 1.35rem;">0</span>/<span id="limitingYieldQuizTotal" style="color: #f9d86d; font-size: 1.35rem;">0</span>
+      </div>
+      <div id="limitingYieldQuizStatus" style="font-size: 0.9rem; color: #cfeaf7; font-weight: 600;">Progress: 0/10 answered</div>
+    </div>
+    <div style="padding: 1rem 1.25rem 1.25rem;">
+      <div style="position: relative; max-width: 900px; margin: 0 auto; padding: 0 2.2rem;">
+        <button id="prevLimitingYieldQuiz" type="button" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8249;</button>
+        <div id="limitingYieldQuizCarousel" style="overflow: hidden; border-radius: 1rem; margin: 0 1rem;">
+          <div id="limitingYieldQuizTrack" style="display: flex; transition: transform 0.35s ease;"></div>
+        </div>
+        <button id="nextLimitingYieldQuiz" type="button" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2; width: 38px; height: 38px; border: none; border-radius: 50%; background: rgba(249,216,109,0.9); color: #1b1b1b; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">&#8250;</button>
+      </div>
+      <div id="limitingYieldQuizDots" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="mole-play yield-play" id="yield-play" aria-labelledby="yield-play-title">
+  <div class="mole-play__heading">
+    <div>
+      <p class="division-topic-label">Topics 3 &amp; 4 · Limiting Reactants &amp; Percent Yield</p>
+      <p class="mole-play__eyebrow">P — Play</p>
+      <h2 id="yield-play-title">Limiting Reactants &amp; Percent Yield</h2>
+      <p>Find the reactant that runs out first, then use it to predict and evaluate product yield.</p>
+    </div>
+    <span class="mole-play__badge">3 interactive steps</span>
+  </div>
+
+  <div class="mole-play__step-nav" role="tablist" aria-label="Limiting reactants and yield activity steps">
+    <button id="yield-step-tab-1" class="mole-play__step yield-play__step is-active" type="button" role="tab" aria-selected="true" aria-controls="yield-slide-1" data-yield-slide="0"><span>01</span> Reactant lab</button>
+    <button id="yield-step-tab-2" class="mole-play__step yield-play__step" type="button" role="tab" aria-selected="false" aria-controls="yield-slide-2" data-yield-slide="1"><span>02</span> Guided practice</button>
+    <button id="yield-step-tab-3" class="mole-play__step yield-play__step" type="button" role="tab" aria-selected="false" aria-controls="yield-slide-3" data-yield-slide="2"><span>03</span> Yield challenge</button>
+  </div>
+
+  <div class="mole-play__slides">
+    <article class="mole-play__slide yield-play__slide is-active" id="yield-slide-1" role="tabpanel" aria-labelledby="yield-step-tab-1">
+      <div class="mole-play__slide-heading">
+        <div><p class="mole-play__eyebrow">Step 1 · Compare</p><h3>Limiting-reactant simulator</h3></div>
+        <label class="mole-play__reaction-label" for="yield-reaction">Balanced reaction
+          <select id="yield-reaction">
+            <option value="ammonia">N₂ + 3 H₂ → 2 NH₃</option>
+            <option value="propane">C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O</option>
+            <option value="iron">4 Fe + 3 O₂ → 2 Fe₂O₃</option>
+          </select>
+        </label>
+      </div>
+      <p class="mole-play__hint">Set the available reactants. Compare how much product each one could make; the smaller amount determines the limiting reactant.</p>
+      <div class="mole-play__equation" id="yield-sim-reactants" aria-live="polite"></div>
+      <div class="mole-play__bridge">
+        <span class="mole-play__bridge-label">Product comparison</span>
+        <div id="yield-sim-comparison" class="yield-play__comparison" aria-live="polite"></div>
+        <p id="yield-sim-result" class="yield-play__result" aria-live="polite"></p>
+      </div>
+      <div class="mole-play__visual">
+        <div class="mole-play__visual-heading"><span>Reaction inventory</span><span>Starting moles → reacted or remaining</span></div>
+        <div id="yield-sim-inventory" class="mole-play__particles" aria-live="polite"></div>
+      </div>
+    </article>
+
+    <article class="mole-play__slide yield-play__slide" id="yield-slide-2" role="tabpanel" aria-labelledby="yield-step-tab-2" hidden>
+      <div class="mole-play__slide-heading">
+        <div><p class="mole-play__eyebrow">Step 2 · Solve</p><h3>Guided limiting-reactant practice</h3></div>
+        <button id="yield-practice-new" class="mole-play__button mole-play__button--quiet" type="button">New question</button>
+      </div>
+      <p id="yield-practice-prompt" class="mole-play__prompt"></p>
+      <p class="mole-play__hint">Build a product calculation for each reactant. Drag a tile to a slot, or select a tile and click a slot; then choose the limiting reactant.</p>
+      <div id="yield-practice-calculations" class="yield-play__practice-calculations"></div>
+      <div class="yield-play__limiter-choice">
+        <span class="mole-play__bridge-label">Limiting reactant</span>
+        <button id="yield-practice-limiter-slot" class="mole-play__slot" type="button" data-yield-practice-slot="limiter" aria-label="Limiting reactant slot">Drop limiting reactant here</button>
+      </div>
+      <div class="mole-play__tile-area">
+        <span class="mole-play__bridge-label">Tile bank</span>
+        <div id="yield-practice-tiles" class="mole-play__tiles"></div>
+      </div>
+      <div class="mole-play__actions">
+        <button id="yield-practice-check" class="mole-play__button" type="button">Check calculations</button>
+        <button id="yield-practice-clear" class="mole-play__button mole-play__button--quiet" type="button">Clear slots</button>
+      </div>
+      <p id="yield-practice-feedback" class="mole-play__feedback" aria-live="polite"></p>
+    </article>
+
+    <article class="mole-play__slide yield-play__slide" id="yield-slide-3" role="tabpanel" aria-labelledby="yield-step-tab-3" hidden>
+      <div class="mole-play__slide-heading">
+        <div><p class="mole-play__eyebrow">Step 3 · Evaluate</p><h3>Theoretical &amp; percent-yield challenge</h3></div>
+        <div class="mole-play__scoreboard"><span>Score <strong id="yield-challenge-score">0</strong></span><span>Streak <strong id="yield-challenge-streak">0</strong> 🔥</span></div>
+      </div>
+      <p id="yield-challenge-prompt" class="mole-play__prompt"></p>
+      <p class="mole-play__hint">Type each given mass, conversion-factor value, and possible product mass. Use the limiting reactant's product mass as theoretical yield.</p>
+      <div id="yield-challenge-pipeline" class="yield-play__challenge-pipeline" aria-label="Limiting-reactant dimensional analysis"></div>
+      <div class="yield-play__answers">
+        <label class="mole-play__answer-input" for="yield-challenge-limiter">Limiting reactant
+          <select id="yield-challenge-limiter"></select>
+        </label>
+        <label class="mole-play__answer-input" for="yield-challenge-theoretical">Theoretical product (g)
+          <input id="yield-challenge-theoretical" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter grams">
+        </label>
+        <label class="mole-play__answer-input" for="yield-challenge-percent">Percent yield (%)
+          <input id="yield-challenge-percent" type="number" min="0" step="any" inputmode="decimal" placeholder="Enter percent">
+        </label>
+      </div>
+      <div class="mole-play__actions">
+        <button id="yield-challenge-check" class="mole-play__button" type="button">Check challenge</button>
+        <button id="yield-challenge-next" class="mole-play__button mole-play__button--quiet" type="button">Next question</button>
+      </div>
+      <p id="yield-challenge-feedback" class="mole-play__feedback" aria-live="polite"></p>
+      <section class="mole-challenge-calculator yield-play__calculator" aria-labelledby="yield-calculator-title">
+        <div class="mole-challenge-calculator__heading">
+          <div>
+            <h4 id="yield-calculator-title">Limiting-reactant scientific calculator</h4>
+            <p>Use this to calculate the values in your dimensional-analysis setup.</p>
+          </div>
+          <button type="button" class="mole-play__button mole-play__button--quiet" data-calculator-action="clear">Clear</button>
+        </div>
+        <output id="yield-calculator-display" class="mole-calculator__display" aria-live="polite" aria-label="Yield calculator display">0</output>
+        <div class="mole-calculator__keys" aria-label="Limiting-reactant scientific calculator keys">
+          <button type="button" data-calculator-insert="(">(</button>
+          <button type="button" data-calculator-insert=")">)</button>
+          <button type="button" data-calculator-function="sin">sin</button>
+          <button type="button" data-calculator-function="cos">cos</button>
+          <button type="button" data-calculator-function="tan">tan</button>
+          <button type="button" data-calculator-operator="/">÷</button>
+          <button type="button" data-calculator-digit="7">7</button>
+          <button type="button" data-calculator-digit="8">8</button>
+          <button type="button" data-calculator-digit="9">9</button>
+          <button type="button" data-calculator-operator="*">×</button>
+          <button type="button" data-calculator-function="sqrt">√</button>
+          <button type="button" data-calculator-operator="^">xʸ</button>
+          <button type="button" data-calculator-digit="4">4</button>
+          <button type="button" data-calculator-digit="5">5</button>
+          <button type="button" data-calculator-digit="6">6</button>
+          <button type="button" data-calculator-operator="-">−</button>
+          <button type="button" data-calculator-function="ln">ln</button>
+          <button type="button" data-calculator-function="log">log</button>
+          <button type="button" data-calculator-digit="1">1</button>
+          <button type="button" data-calculator-digit="2">2</button>
+          <button type="button" data-calculator-digit="3">3</button>
+          <button type="button" data-calculator-operator="+">+</button>
+          <button type="button" data-calculator-insert="pi">π</button>
+          <button type="button" data-calculator-insert="e">e</button>
+          <button type="button" data-calculator-digit="0" class="mole-calculator__zero">0</button>
+          <button type="button" data-calculator-action="decimal">.</button>
+          <button type="button" data-calculator-action="backspace" aria-label="Backspace">⌫</button>
+          <button type="button" data-calculator-insert="Ans">Ans</button>
+          <button type="button" data-calculator-action="equals" class="mole-calculator__equals">=</button>
+        </div>
+      </section>
+    </article>
+  </div>
+
+  <div class="mole-play__footer">
+    <button id="yield-play-previous" class="mole-play__button mole-play__button--quiet" type="button" disabled>← Previous</button>
+    <span id="yield-play-progress" aria-live="polite">Step 1 of 3</span>
+    <button id="yield-play-next" class="mole-play__button" type="button">Next →</button>
+  </div>
+</section>
+
+<section class="exit-ticket" aria-labelledby="exit-ticket-title">
+  <div class="exit-ticket__divider" aria-label="Final checkpoint">
+    <span>Final Checkpoint</span>
+  </div>
+  <div class="exit-ticket__header">
+    <div>
+      <p class="division-topic-label">Topics 1–4 · Exit Ticket</p>
+      <h2 id="exit-ticket-title">Mass Relationships in Reactions</h2>
+      <p>Complete the summary by choosing the correct chemistry term for each blank.</p>
+    </div>
+    <p class="exit-ticket__score" aria-live="polite">Score: <strong id="exit-ticket-score">—/8</strong></p>
+  </div>
+
+  <div class="exit-ticket__bank" aria-labelledby="exit-ticket-bank-title">
+    <h3 id="exit-ticket-bank-title">Word Bank</h3>
+    <ul>
+      <li>coefficients</li>
+      <li>excess</li>
+      <li>theoretical yield</li>
+      <li>limiting reactant</li>
+      <li>actual yield</li>
+      <li>percent yield</li>
+      <li>moles</li>
+      <li>Law of Conservation of Mass</li>
+    </ul>
+  </div>
+
+  <p class="exit-ticket__paragraph">
+    According to
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 1</span><select aria-label="Blank 1"><option value="">Choose a term</option></select></label>,
+    matter cannot be created or destroyed in a chemical reaction. To represent this on paper, we use balanced equations where the numbers in front, called
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 2</span><select aria-label="Blank 2"><option value="">Choose a term</option></select></label>,
+    represent the ratio of particles or
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 3</span><select aria-label="Blank 3"><option value="">Choose a term</option></select></label>
+    needed. In a real chemical reaction, the ingredient that gets completely used up first is known as the
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 4</span><select aria-label="Blank 4"><option value="">Choose a term</option></select></label>,
+    which determines the maximum amount of product that can form. The remaining ingredient is called the
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 5</span><select aria-label="Blank 5"><option value="">Choose a term</option></select></label>
+    reactant. The maximum calculated product amount is called the
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 6</span><select aria-label="Blank 6"><option value="">Choose a term</option></select></label>.
+    In a laboratory, the amount of product you actually collect is the
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 7</span><select aria-label="Blank 7"><option value="">Choose a term</option></select></label>.
+    Finally, comparing your real lab results to your paper calculations gives you the
+    <label class="exit-ticket__blank"><span class="visually-hidden">Blank 8</span><select aria-label="Blank 8"><option value="">Choose a term</option></select></label>,
+    which measures the overall efficiency of your reaction.
+  </p>
+
+  <div class="exit-ticket__actions">
+    <button class="mole-play__button" id="exit-ticket-check" type="button">Check answers</button>
+    <button class="mole-play__button mole-play__button--quiet" id="exit-ticket-reset" type="button">Reset</button>
+    <button class="mole-play__button mole-play__button--quiet" id="exit-ticket-key-toggle" type="button" aria-expanded="false" aria-controls="exit-ticket-key">Show answer key</button>
+  </div>
+  <p id="exit-ticket-feedback" class="mole-play__feedback" aria-live="polite"></p>
+  <ol class="exit-ticket__key" id="exit-ticket-key" hidden>
+    <li>Law of Conservation of Mass</li>
+    <li>coefficients</li>
+    <li>moles</li>
+    <li>limiting reactant</li>
+    <li>excess</li>
+    <li>theoretical yield</li>
+    <li>actual yield</li>
+    <li>percent yield</li>
+  </ol>
+
+  <section class="exit-ticket__reflection" aria-labelledby="exit-ticket-reflection-title">
+    <h3 id="exit-ticket-reflection-title">Share Your Feedback</h3>
+    <p>What was clear, and what would you like more help with? Your note is saved only in this browser.</p>
+    <label class="visually-hidden" for="exit-ticket-reflection">Your feedback</label>
+    <textarea id="exit-ticket-reflection" rows="4" maxlength="1000" placeholder="Write your feedback or a note to your teacher..."></textarea>
+    <div class="exit-ticket__reflection-actions">
+      <button class="mole-play__button" id="exit-ticket-save-feedback" type="button">Save feedback on this device</button>
+      <p id="exit-ticket-feedback-status" class="mole-play__feedback" aria-live="polite"></p>
+    </div>
+    <div class="exit-ticket__suggestions">
+      <h4>Have a suggestion?</h4>
+      <p>Share ideas to help improve this chemistry learning page.</p>
+      <iframe
+        title="SeanTheAtom suggestion form"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdT4ZVOpYkjESbRIot9fo-tw2PLMCqHKxmI2CcwPuQoaOqBWA/viewform?embedded=true"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      >Loading suggestion form…</iframe>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdT4ZVOpYkjESbRIot9fo-tw2PLMCqHKxmI2CcwPuQoaOqBWA/viewform?usp=header" target="_blank" rel="noopener noreferrer">Open the suggestion form in a new tab</a>
+    </div>
+  </section>
+</section>
+
+<script>
+  (() => {
+    const terms = [
+      'coefficients',
+      'excess',
+      'theoretical yield',
+      'limiting reactant',
+      'actual yield',
+      'percent yield',
+      'moles',
+      'Law of Conservation of Mass'
+    ];
+    const answers = [
+      'Law of Conservation of Mass',
+      'coefficients',
+      'moles',
+      'limiting reactant',
+      'excess',
+      'theoretical yield',
+      'actual yield',
+      'percent yield'
+    ];
+    const selects = Array.from(document.querySelectorAll('.exit-ticket__blank select'));
+    const score = document.getElementById('exit-ticket-score');
+    const feedback = document.getElementById('exit-ticket-feedback');
+    const key = document.getElementById('exit-ticket-key');
+    const keyToggle = document.getElementById('exit-ticket-key-toggle');
+    const reflection = document.getElementById('exit-ticket-reflection');
+    const reflectionStatus = document.getElementById('exit-ticket-feedback-status');
+    const reflectionStorageKey = 'seanTheAtomExitTicketFeedback';
+
+    try {
+      reflection.value = localStorage.getItem(reflectionStorageKey) || '';
+    } catch (error) {
+      console.error('Unable to load saved exit-ticket feedback.', error);
+      reflectionStatus.textContent = 'Saved feedback could not be loaded from this browser.';
+    }
+
+    selects.forEach((select) => {
+      terms.forEach((term) => {
+        const option = document.createElement('option');
+        option.value = term;
+        option.textContent = term;
+        select.append(option);
+      });
+      select.addEventListener('change', () => {
+        selects.forEach((answerSelect) => {
+          answerSelect.classList.remove('is-correct', 'is-incorrect');
+          answerSelect.removeAttribute('aria-invalid');
+        });
+        score.textContent = '—/8';
+        feedback.className = 'mole-play__feedback';
+        feedback.textContent = 'Answers changed. Check your answers again when you are ready.';
+      });
+    });
+
+    document.getElementById('exit-ticket-check').addEventListener('click', () => {
+      if (selects.some((select) => !select.value)) {
+        feedback.className = 'mole-play__feedback is-incorrect';
+        feedback.textContent = 'Choose a term for every blank before checking your answers.';
+        return;
+      }
+
+      let correct = 0;
+      selects.forEach((select, index) => {
+        const isCorrect = select.value === answers[index];
+        select.classList.toggle('is-correct', isCorrect);
+        select.classList.toggle('is-incorrect', !isCorrect);
+        select.setAttribute('aria-invalid', String(!isCorrect));
+        if (isCorrect) correct += 1;
+      });
+
+      score.textContent = `${correct}/8`;
+      feedback.className = `mole-play__feedback ${correct === answers.length ? 'is-correct' : 'is-incorrect'}`;
+      feedback.textContent = correct === answers.length
+        ? 'Excellent work — every term is in the right place!'
+        : `${correct} of 8 correct. Review the highlighted blanks and try again.`;
+      if (correct === answers.length) {
+        celebrateCorrectAnswer(document.getElementById('exit-ticket-check'));
+      }
+    });
+
+    document.getElementById('exit-ticket-reset').addEventListener('click', () => {
+      selects.forEach((select) => {
+        select.value = '';
+        select.classList.remove('is-correct', 'is-incorrect');
+        select.removeAttribute('aria-invalid');
+      });
+      score.textContent = '—/8';
+      feedback.className = 'mole-play__feedback';
+      feedback.textContent = '';
+    });
+
+    keyToggle.addEventListener('click', () => {
+      const showKey = key.hidden;
+      key.hidden = !showKey;
+      keyToggle.setAttribute('aria-expanded', String(showKey));
+      keyToggle.textContent = showKey ? 'Hide answer key' : 'Show answer key';
+    });
+
+    document.getElementById('exit-ticket-save-feedback').addEventListener('click', () => {
+      try {
+        localStorage.setItem(reflectionStorageKey, reflection.value.trim());
+        reflectionStatus.className = 'mole-play__feedback is-correct';
+        reflectionStatus.textContent = 'Your feedback is saved in this browser. It has not been sent to your teacher.';
+      } catch (error) {
+        console.error('Unable to save exit-ticket feedback.', error);
+        reflectionStatus.className = 'mole-play__feedback is-incorrect';
+        reflectionStatus.textContent = 'Feedback could not be saved in this browser. You can copy your note before leaving this page.';
+      }
+    });
+  })();
+</script>
+
+<script>
+  const topic2QuizData = [
+    {
+      question: 'Where do the numbers for a mole ratio come from in a stoichiometry problem?',
+      options: ['The molar masses of the compounds', 'The subscript numbers in individual formulas', 'The coefficients of the balanced chemical equation', 'The measured mass in grams from a lab balance'],
+      answer: 'C',
+      explanation: 'Mole ratios are established directly from the coefficients in a balanced chemical equation.'
+    },
+    {
+      question: 'Given the reaction 2H₂ + O₂ → 2H₂O, what is the mole ratio of H₂ to H₂O?',
+      options: ['1 : 2', '2 : 1', '2 : 2 (or 1 : 1)', '1 : 1 (from subscripts)'],
+      answer: 'C',
+      explanation: 'The coefficient in front of H₂ is 2 and the coefficient in front of H₂O is 2, giving a 2:2 (or 1:1) ratio.'
+    },
+    {
+      question: 'In stoichiometry calculations, why must you convert grams to moles before using a mole ratio?',
+      options: ['Grams can change based on atmospheric pressure.', 'Balanced equations represent ratios of particles/moles, not direct ratios of mass.', 'Grams are only used for gases.', 'Molar mass is always equal to 1.'],
+      answer: 'B',
+      explanation: 'Coefficients in a chemical equation show particle and mole relationships, not mass relationships. Different molecules have different molar masses.'
+    },
+    {
+      question: 'In the reaction N₂ + 3H₂ → 2NH₃, how many moles of NH₃ are produced from 6 moles of H₂?',
+      options: ['2 moles', '4 moles', '6 moles', '12 moles'],
+      answer: 'B',
+      explanation: 'Using the mole ratio (3 mol H₂ : 2 mol NH₃): 6 mol H₂ × (2 mol NH₃ / 3 mol H₂) = 4 mol NH₃.'
+    },
+    {
+      question: 'What is the correct standard pathway for converting grams of Reactant A into grams of Product B?',
+      options: ['Grams A → Grams B', 'Grams A → Moles A → Moles B → Grams B', 'Moles A → Grams A → Grams B → Moles B', 'Grams A → Moles B → Grams B'],
+      answer: 'B',
+      explanation: 'The standard stoichiometry process uses molar mass to reach moles, the mole ratio to switch substances, and molar mass again to reach the final mass.'
+    },
+    {
+      question: 'For the reaction 2KClO₃ → 2KCl + 3O₂, how many moles of O₂ are produced when 4 moles of KClO₃ decompose completely?',
+      options: ['3 moles', '4 moles', '6 moles', '12 moles'],
+      answer: 'C',
+      explanation: 'Using the mole ratio (2 mol KClO₃ : 3 mol O₂): 4 mol KClO₃ × (3 mol O₂ / 2 mol KClO₃) = 6 mol O₂.'
+    },
+    {
+      question: 'What unit factor is used to convert grams of a compound into moles of the same compound?',
+      options: ["Avogadro's Number (6.022 × 10²³)", 'Molar Mass (g/mol)', 'Coefficients from the balanced equation', 'Percent yield formula'],
+      answer: 'B',
+      explanation: 'Molar mass (found on the periodic table) provides the conversion between mass in grams and amount in moles.'
+    },
+    {
+      question: 'Given C₃H₈ + 5O₂ → 3CO₂ + 4H₂O, how many moles of oxygen gas (O₂) are needed to react completely with 2 moles of propane (C₃H₈)?',
+      options: ['5 moles', '8 moles', '10 moles', '15 moles'],
+      answer: 'C',
+      explanation: 'The mole ratio between C₃H₈ and O₂ is 1:5. 2 mol C₃H₈ × (5 mol O₂ / 1 mol C₃H₈) = 10 mol O₂.'
+    },
+    {
+      question: 'If you have 1 mole of NaCl (Molar mass = 58.44 g/mol), what is its mass in grams?',
+      options: ['29.22 g', '58.44 g', '116.88 g', '1.00 g'],
+      answer: 'B',
+      explanation: 'Mass = Moles × Molar Mass = 1 mol × 58.44 g/mol = 58.44 g.'
+    },
+    {
+      question: 'In the reaction 4Fe + 3O₂ → 2Fe₂O₃, which conversion factor converts moles of Fe to moles of Fe₂O₃?',
+      options: ['4 mol Fe / 2 mol Fe₂O₃', '2 mol Fe₂O₃ / 4 mol Fe', '3 mol O₂ / 2 mol Fe₂O₃', '1 mol Fe₂O₃ / 55.85 g Fe'],
+      answer: 'B',
+      explanation: 'To convert from moles of Fe to moles of Fe₂O₃, put the target substance (Fe₂O₃) in the numerator and the starting substance (Fe) in the denominator.'
+    }
+  ];
+
+  const topic2QuizState = topic2QuizData.map(() => ({ answered: false, selected: null, correct: false }));
+  const topic2QuizTrack = document.getElementById('topic2QuizTrack');
+  const topic2QuizDots = document.getElementById('topic2QuizDots');
+  const prevTopic2QuizBtn = document.getElementById('prevTopic2Quiz');
+  const nextTopic2QuizBtn = document.getElementById('nextTopic2Quiz');
+  const topic2QuizScoreEl = document.getElementById('topic2QuizScore');
+  const topic2QuizTotalEl = document.getElementById('topic2QuizTotal');
+  const topic2QuizStatusEl = document.getElementById('topic2QuizStatus');
+  let topic2QuizIndex = 0;
+
+  function updateTopic2QuizScore() {
+    const score = topic2QuizState.filter((item) => item.correct).length;
+    const answeredCount = topic2QuizState.filter((item) => item.answered).length;
+    topic2QuizScoreEl.textContent = score;
+    topic2QuizTotalEl.textContent = topic2QuizData.length;
+
+    if (answeredCount === topic2QuizData.length) {
+      if (score === topic2QuizData.length) {
+        topic2QuizStatusEl.textContent = 'Perfect score! You nailed stoichiometry.';
+      } else if (score >= Math.ceil(topic2QuizData.length * 0.7)) {
+        topic2QuizStatusEl.textContent = 'Strong work! You are ready for more chemistry practice.';
+      } else if (score >= Math.ceil(topic2QuizData.length * 0.4)) {
+        topic2QuizStatusEl.textContent = 'Nice effort! Review the key ratios and try again.';
+      } else {
+        topic2QuizStatusEl.textContent = 'Keep practicing — stoichiometry gets easier with repetition.';
+      }
+    } else {
+      topic2QuizStatusEl.textContent = `Progress: ${answeredCount}/${topic2QuizData.length} answered`;
+    }
+  }
+
+  function renderTopic2QuizCarousel() {
+    updateTopic2QuizScore();
+    topic2QuizTrack.innerHTML = '';
+    topic2QuizDots.innerHTML = '';
+
+    topic2QuizData.forEach((item, index) => {
+      const slide = document.createElement('div');
+      slide.style.minWidth = '100%';
+      slide.style.boxSizing = 'border-box';
+      slide.style.padding = '0.15rem 0.1rem';
+
+      const questionCard = document.createElement('div');
+      questionCard.style.padding = '1rem 1.1rem';
+      questionCard.style.border = '1px solid rgba(249,216,109,0.36)';
+      questionCard.style.borderRadius = '0.8rem';
+      questionCard.style.background = 'rgba(255,255,255,0.02)';
+      questionCard.style.minHeight = '260px';
+
+      const qTitle = document.createElement('div');
+      qTitle.style.fontWeight = '800';
+      qTitle.style.color = '#f9d86d';
+      qTitle.style.marginBottom = '0.6rem';
+      qTitle.textContent = `Q${index + 1}`;
+
+      const questionText = document.createElement('p');
+      questionText.style.margin = '0 0 0.7rem';
+      questionText.style.fontSize = '1rem';
+      questionText.style.lineHeight = '1.6';
+      questionText.style.color = '#eef3ff';
+      questionText.textContent = item.question;
+
+      const optionsWrap = document.createElement('div');
+      optionsWrap.style.display = 'grid';
+      optionsWrap.style.gap = '0.45rem';
+
+      item.options.forEach((choice, choiceIndex) => {
+        const optionBtn = document.createElement('button');
+        const optionLetter = String.fromCharCode(65 + choiceIndex);
+        const state = topic2QuizState[index];
+        const isCorrect = optionLetter === item.answer;
+        const isSelected = state.selected === optionLetter;
+
+        optionBtn.type = 'button';
+        optionBtn.textContent = `${optionLetter}. ${choice}`;
+        optionBtn.style.display = 'block';
+        optionBtn.style.width = '100%';
+        optionBtn.style.textAlign = 'left';
+        optionBtn.style.padding = '0.65rem 0.8rem';
+        optionBtn.style.borderRadius = '0.5rem';
+        optionBtn.style.border = '1px solid rgba(117,245,231,0.35)';
+        optionBtn.style.background = 'rgba(255,255,255,0.02)';
+        optionBtn.style.color = '#eef3ff';
+        optionBtn.style.cursor = 'pointer';
+        optionBtn.style.fontSize = '0.93rem';
+        optionBtn.style.fontWeight = '600';
+        optionBtn.style.transition = 'all 0.15s ease';
+
+        if (state.answered) {
+          optionBtn.disabled = true;
+          if (isCorrect) {
+            optionBtn.style.borderColor = 'rgba(127,242,154,0.9)';
+            optionBtn.style.background = 'rgba(127,242,154,0.16)';
+            optionBtn.style.color = '#ffffff';
+          } else if (isSelected) {
+            optionBtn.style.borderColor = 'rgba(255,110,110,0.9)';
+            optionBtn.style.background = 'rgba(255,110,110,0.12)';
+          }
+        }
+
+        optionBtn.addEventListener('click', () => {
+          topic2QuizState[index].answered = true;
+          topic2QuizState[index].selected = optionLetter;
+          topic2QuizState[index].correct = isCorrect;
+
+          if (isCorrect) {
+            celebrateCorrectAnswer(optionBtn);
+          }
+
+          renderTopic2QuizCarousel();
+        });
+
+        optionsWrap.appendChild(optionBtn);
+      });
+
+      questionCard.appendChild(qTitle);
+      questionCard.appendChild(questionText);
+      questionCard.appendChild(optionsWrap);
+
+      if (topic2QuizState[index].answered) {
+        const feedback = document.createElement('div');
+        const isCorrectAnswer = topic2QuizState[index].correct;
+        feedback.style.marginTop = '0.75rem';
+        feedback.style.padding = '0.7rem 0.8rem';
+        feedback.style.borderRadius = '0.55rem';
+        feedback.style.fontSize = '0.9rem';
+        feedback.style.lineHeight = '1.5';
+        feedback.style.fontWeight = '700';
+        feedback.style.background = isCorrectAnswer ? 'rgba(127,242,154,0.14)' : 'rgba(255,110,110,0.14)';
+        feedback.style.border = isCorrectAnswer ? '1px solid rgba(127,242,154,0.6)' : '1px solid rgba(255,110,110,0.6)';
+        feedback.style.color = '#eef3ff';
+        feedback.textContent = isCorrectAnswer ? `Correct! ${item.explanation}` : `Incorrect. Correct answer: ${item.answer}. ${item.explanation}`;
+        questionCard.appendChild(feedback);
+      }
+
+      slide.appendChild(questionCard);
+      topic2QuizTrack.appendChild(slide);
+    });
+
+    topic2QuizTrack.style.transform = `translateX(-${topic2QuizIndex * 100}%)`;
+
+    topic2QuizData.forEach((_, dotIndex) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.border = 'none';
+      dot.style.borderRadius = '50%';
+      dot.style.background = dotIndex === topic2QuizIndex ? 'rgba(249,216,109,0.95)' : 'rgba(249,216,109,0.3)';
+      dot.style.cursor = 'pointer';
+      dot.style.transform = dotIndex === topic2QuizIndex ? 'scale(1.15)' : 'scale(1)';
+      dot.style.transition = 'all 0.2s ease';
+      dot.addEventListener('click', () => {
+        topic2QuizIndex = dotIndex;
+        renderTopic2QuizCarousel();
+      });
+      topic2QuizDots.appendChild(dot);
+    });
+
+    prevTopic2QuizBtn.disabled = topic2QuizIndex === 0;
+    nextTopic2QuizBtn.disabled = topic2QuizIndex === topic2QuizData.length - 1;
+    prevTopic2QuizBtn.style.opacity = topic2QuizIndex === 0 ? '0.45' : '1';
+    nextTopic2QuizBtn.style.opacity = topic2QuizIndex === topic2QuizData.length - 1 ? '0.45' : '1';
+  }
+
+  prevTopic2QuizBtn.addEventListener('click', () => {
+    if (topic2QuizIndex > 0) {
+      topic2QuizIndex -= 1;
+      renderTopic2QuizCarousel();
+    }
+  });
+
+  nextTopic2QuizBtn.addEventListener('click', () => {
+    if (topic2QuizIndex < topic2QuizData.length - 1) {
+      topic2QuizIndex += 1;
+      renderTopic2QuizCarousel();
+    }
+  });
+
+  renderTopic2QuizCarousel();
+
+  const limitingYieldQuizData = [
+    {
+      question: 'What is the limiting reactant in a chemical reaction?',
+      options: ['The reactant with the largest molar mass.', 'The reactant that is completely consumed first and caps the maximum product formed.', 'The reactant that is left over after the reaction stops.', 'The reactant present in the highest volume.'],
+      answer: 'B',
+      explanation: 'The limiting reactant runs out first, stopping the reaction and determining the maximum theoretical amount of product that can form.'
+    },
+    {
+      question: 'What is an excess reactant?',
+      options: ['The reactant that is completely used up first.', 'The product that escapes as gas.', 'The reactant that remains unreacted after the limiting reactant is completely consumed.', 'A catalyst added to speed up the reaction.'],
+      answer: 'C',
+      explanation: 'The excess reactant is present in a quantity greater than needed to react with the limiting reactant, leaving leftover material.'
+    },
+    {
+      question: 'What is the theoretical yield of a reaction?',
+      options: ['The actual amount of product weighed on a balance in a lab.', 'The maximum calculated amount of product that can form from the limiting reactant.', 'The amount of excess reactant remaining after the reaction stops.', 'The percentage efficiency of the lab procedure.'],
+      answer: 'B',
+      explanation: 'Theoretical yield is the maximum possible yield calculated on paper using stoichiometric relationships and the limiting reactant.'
+    },
+    {
+      question: 'Which equation correctly calculates Percent Yield?',
+      options: ['Percent Yield = (Theoretical Yield / Actual Yield) × 100%', 'Percent Yield = (Actual Yield / Theoretical Yield) × 100%', 'Percent Yield = (Actual Yield × Theoretical Yield) × 100%', 'Percent Yield = (Actual Yield − Theoretical Yield) × 100%'],
+      answer: 'B',
+      explanation: 'Percent yield evaluates reaction efficiency by dividing the actual experimental yield by the theoretical calculated yield, multiplied by 100%.'
+    },
+    {
+      question: 'If a student calculates a theoretical yield of 50.0 g of NaCl, but recovers 40.0 g in the lab, what is the percent yield?',
+      options: ['125%', '80%', '20%', '90%'],
+      answer: 'B',
+      explanation: 'Percent Yield = (40.0 g / 50.0 g) × 100% = 80%.'
+    },
+    {
+      question: 'Why does the reactant with the smaller initial mass in grams NOT automatically mean it is the limiting reactant?',
+      options: ['Reactants have different molar masses and react in specific mole ratios, not mass ratios.', 'Mass changes based on room temperature.', 'The Law of Conservation of Mass does not apply to limiting reactants.', 'The lighter reactant is always in excess.'],
+      answer: 'A',
+      explanation: 'Stoichiometry depends on moles and balanced coefficients, not raw mass. A smaller starting mass can still contain more moles if its molar mass is low.'
+    },
+    {
+      question: 'For the reaction 2H₂ + O₂ → 2H₂O, if 4.0 moles of H₂ react with 1.0 mole of O₂, what is the limiting reactant?',
+      options: ['H₂', 'O₂', 'H₂O', 'Neither, both are completely consumed'],
+      answer: 'B',
+      explanation: '4.0 moles of H₂ require 2.0 moles of O₂ for complete reaction. Since only 1.0 mole of O₂ is available, O₂ runs out first and limits the reaction.'
+    },
+    {
+      question: 'Using the scenario from Question 7 (4.0 mol H₂ and 1.0 mol O₂), what is the theoretical yield of H₂O in moles?',
+      options: ['1.0 mole', '2.0 moles', '4.0 moles', '8.0 moles'],
+      answer: 'B',
+      explanation: 'Calculated using the limiting reactant (O₂): 1.0 mol O₂ × (2 mol H₂O / 1 mol O₂) = 2.0 mol H₂O.'
+    },
+    {
+      question: 'If a reaction yields a calculated percent yield greater than 100% in a laboratory experiment, what is the most likely cause?',
+      options: ['The limiting reactant doubled during the reaction.', 'The product was not fully dried or contained impurities/moisture.', 'Matter was created during the reaction process.', 'The balanced chemical equation was incorrect.'],
+      answer: 'B',
+      explanation: 'Experimental yields over 100% usually mean the collected product still contained unevaporated solvent, water, or unreacted impurities adding extra mass.'
+    },
+    {
+      question: 'How do you calculate the mass of excess reactant remaining after a reaction stops?',
+      options: ['Subtract the actual yield from the theoretical yield.', 'Subtract the mass of excess reactant consumed from the starting mass of excess reactant.', 'Multiply the initial excess mass by the percent yield.', 'Divide the limiting reactant mass by the excess reactant mass.'],
+      answer: 'B',
+      explanation: 'Excess Remaining = Initial Excess Mass − Excess Mass Consumed by the Limiting Reactant.'
+    }
+  ];
+
+  const limitingYieldQuizState = limitingYieldQuizData.map(() => ({ answered: false, selected: null, correct: false }));
+  const limitingYieldQuizTrack = document.getElementById('limitingYieldQuizTrack');
+  const limitingYieldQuizDots = document.getElementById('limitingYieldQuizDots');
+  const prevLimitingYieldQuizBtn = document.getElementById('prevLimitingYieldQuiz');
+  const nextLimitingYieldQuizBtn = document.getElementById('nextLimitingYieldQuiz');
+  const limitingYieldQuizScoreEl = document.getElementById('limitingYieldQuizScore');
+  const limitingYieldQuizTotalEl = document.getElementById('limitingYieldQuizTotal');
+  const limitingYieldQuizStatusEl = document.getElementById('limitingYieldQuizStatus');
+  let limitingYieldQuizIndex = 0;
+
+  function updateLimitingYieldQuizScore() {
+    const score = limitingYieldQuizState.filter((item) => item.correct).length;
+    const answeredCount = limitingYieldQuizState.filter((item) => item.answered).length;
+    limitingYieldQuizScoreEl.textContent = score;
+    limitingYieldQuizTotalEl.textContent = limitingYieldQuizData.length;
+
+    if (answeredCount === limitingYieldQuizData.length) {
+      if (score === limitingYieldQuizData.length) {
+        limitingYieldQuizStatusEl.textContent = 'Perfect score! You nailed limiting reactants and percent yield.';
+      } else if (score >= Math.ceil(limitingYieldQuizData.length * 0.7)) {
+        limitingYieldQuizStatusEl.textContent = 'Strong work! You are ready for more chemistry lab practice.';
+      } else if (score >= Math.ceil(limitingYieldQuizData.length * 0.4)) {
+        limitingYieldQuizStatusEl.textContent = 'Nice effort! Review the reaction logic and try again.';
+      } else {
+        limitingYieldQuizStatusEl.textContent = 'Keep practicing — these ideas become easier with repetition.';
+      }
+    } else {
+      limitingYieldQuizStatusEl.textContent = `Progress: ${answeredCount}/${limitingYieldQuizData.length} answered`;
+    }
+  }
+
+  function renderLimitingYieldQuizCarousel() {
+    updateLimitingYieldQuizScore();
+    limitingYieldQuizTrack.innerHTML = '';
+    limitingYieldQuizDots.innerHTML = '';
+
+    limitingYieldQuizData.forEach((item, index) => {
+      const slide = document.createElement('div');
+      slide.style.minWidth = '100%';
+      slide.style.boxSizing = 'border-box';
+      slide.style.padding = '0.15rem 0.1rem';
+
+      const questionCard = document.createElement('div');
+      questionCard.style.padding = '1rem 1.1rem';
+      questionCard.style.border = '1px solid rgba(249,216,109,0.36)';
+      questionCard.style.borderRadius = '0.8rem';
+      questionCard.style.background = 'rgba(255,255,255,0.02)';
+      questionCard.style.minHeight = '260px';
+
+      const qTitle = document.createElement('div');
+      qTitle.style.fontWeight = '800';
+      qTitle.style.color = '#f9d86d';
+      qTitle.style.marginBottom = '0.6rem';
+      qTitle.textContent = `Q${index + 1}`;
+
+      const questionText = document.createElement('p');
+      questionText.style.margin = '0 0 0.7rem';
+      questionText.style.fontSize = '1rem';
+      questionText.style.lineHeight = '1.6';
+      questionText.style.color = '#eef3ff';
+      questionText.textContent = item.question;
+
+      const optionsWrap = document.createElement('div');
+      optionsWrap.style.display = 'grid';
+      optionsWrap.style.gap = '0.45rem';
+
+      item.options.forEach((choice, choiceIndex) => {
+        const optionBtn = document.createElement('button');
+        const optionLetter = String.fromCharCode(65 + choiceIndex);
+        const state = limitingYieldQuizState[index];
+        const isCorrect = optionLetter === item.answer;
+        const isSelected = state.selected === optionLetter;
+
+        optionBtn.type = 'button';
+        optionBtn.textContent = `${optionLetter}. ${choice}`;
+        optionBtn.style.display = 'block';
+        optionBtn.style.width = '100%';
+        optionBtn.style.textAlign = 'left';
+        optionBtn.style.padding = '0.65rem 0.8rem';
+        optionBtn.style.borderRadius = '0.5rem';
+        optionBtn.style.border = '1px solid rgba(117,245,231,0.35)';
+        optionBtn.style.background = 'rgba(255,255,255,0.02)';
+        optionBtn.style.color = '#eef3ff';
+        optionBtn.style.cursor = 'pointer';
+        optionBtn.style.fontSize = '0.93rem';
+        optionBtn.style.fontWeight = '600';
+        optionBtn.style.transition = 'all 0.15s ease';
+
+        if (state.answered) {
+          optionBtn.disabled = true;
+          if (isCorrect) {
+            optionBtn.style.borderColor = 'rgba(127,242,154,0.9)';
+            optionBtn.style.background = 'rgba(127,242,154,0.16)';
+            optionBtn.style.color = '#ffffff';
+          } else if (isSelected) {
+            optionBtn.style.borderColor = 'rgba(255,110,110,0.9)';
+            optionBtn.style.background = 'rgba(255,110,110,0.12)';
+          }
+        }
+
+        optionBtn.addEventListener('click', () => {
+          limitingYieldQuizState[index].answered = true;
+          limitingYieldQuizState[index].selected = optionLetter;
+          limitingYieldQuizState[index].correct = isCorrect;
+
+          if (isCorrect) {
+            celebrateCorrectAnswer(optionBtn);
+          }
+
+          renderLimitingYieldQuizCarousel();
+        });
+
+        optionsWrap.appendChild(optionBtn);
+      });
+
+      questionCard.appendChild(qTitle);
+      questionCard.appendChild(questionText);
+      questionCard.appendChild(optionsWrap);
+
+      if (limitingYieldQuizState[index].answered) {
+        const feedback = document.createElement('div');
+        const isCorrectAnswer = limitingYieldQuizState[index].correct;
+        feedback.style.marginTop = '0.75rem';
+        feedback.style.padding = '0.7rem 0.8rem';
+        feedback.style.borderRadius = '0.55rem';
+        feedback.style.fontSize = '0.9rem';
+        feedback.style.lineHeight = '1.5';
+        feedback.style.fontWeight = '700';
+        feedback.style.background = isCorrectAnswer ? 'rgba(127,242,154,0.14)' : 'rgba(255,110,110,0.14)';
+        feedback.style.border = isCorrectAnswer ? '1px solid rgba(127,242,154,0.6)' : '1px solid rgba(255,110,110,0.6)';
+        feedback.style.color = '#eef3ff';
+        feedback.textContent = isCorrectAnswer ? `Correct! ${item.explanation}` : `Incorrect. Correct answer: ${item.answer}. ${item.explanation}`;
+        questionCard.appendChild(feedback);
+      }
+
+      slide.appendChild(questionCard);
+      limitingYieldQuizTrack.appendChild(slide);
+    });
+
+    limitingYieldQuizTrack.style.transform = `translateX(-${limitingYieldQuizIndex * 100}%)`;
+
+    limitingYieldQuizData.forEach((_, dotIndex) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.border = 'none';
+      dot.style.borderRadius = '50%';
+      dot.style.background = dotIndex === limitingYieldQuizIndex ? 'rgba(249,216,109,0.95)' : 'rgba(249,216,109,0.3)';
+      dot.style.cursor = 'pointer';
+      dot.style.transform = dotIndex === limitingYieldQuizIndex ? 'scale(1.15)' : 'scale(1)';
+      dot.style.transition = 'all 0.2s ease';
+      dot.addEventListener('click', () => {
+        limitingYieldQuizIndex = dotIndex;
+        renderLimitingYieldQuizCarousel();
+      });
+      limitingYieldQuizDots.appendChild(dot);
+    });
+
+    prevLimitingYieldQuizBtn.disabled = limitingYieldQuizIndex === 0;
+    nextLimitingYieldQuizBtn.disabled = limitingYieldQuizIndex === limitingYieldQuizData.length - 1;
+    prevLimitingYieldQuizBtn.style.opacity = limitingYieldQuizIndex === 0 ? '0.45' : '1';
+    nextLimitingYieldQuizBtn.style.opacity = limitingYieldQuizIndex === limitingYieldQuizData.length - 1 ? '0.45' : '1';
+  }
+
+  prevLimitingYieldQuizBtn.addEventListener('click', () => {
+    if (limitingYieldQuizIndex > 0) {
+      limitingYieldQuizIndex -= 1;
+      renderLimitingYieldQuizCarousel();
+    }
+  });
+
+  nextLimitingYieldQuizBtn.addEventListener('click', () => {
+    if (limitingYieldQuizIndex < limitingYieldQuizData.length - 1) {
+      limitingYieldQuizIndex += 1;
+      renderLimitingYieldQuizCarousel();
+    }
+  });
+
+  renderLimitingYieldQuizCarousel();
+
+  const leapTrack = document.getElementById('leapTrack');
+  const leapDots = [...document.querySelectorAll('.leap-dot')];
+  const prevBtn = document.getElementById('prevLeap');
+  const nextBtn = document.getElementById('nextLeap');
+  let leapIndex = 0;
+  const leapSlides = 4;
+
+  function updateLeapCarousel() {
+    leapTrack.style.transform = `translateX(-${leapIndex * 100}%)`;
+
+    leapDots.forEach((dot, i) => {
+      const active = i === leapIndex;
+      dot.style.background = active ? 'rgba(42,37,37,0.9)' : 'rgba(42,37,37,0.35)';
+      dot.style.transform = active ? 'scale(1.2)' : 'scale(1)';
+    });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    leapIndex = (leapIndex - 1 + leapSlides) % leapSlides;
+    updateLeapCarousel();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    leapIndex = (leapIndex + 1) % leapSlides;
+    updateLeapCarousel();
+  });
+
+  leapDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      leapIndex = Number(dot.dataset.index);
+      updateLeapCarousel();
+    });
+  });
+
+  const quizData = [
+    {
+      question: 'What does the Law of Conservation of Mass state regarding chemical reactions?',
+      options: ['Mass increases as energy is released.', 'Mass is converted entirely into heat and light.', 'Mass cannot be created or destroyed in a chemical reaction.', 'Mass decreases as reactants turn into gases.'],
+      answer: 'C',
+      explanation: 'Matter is neither created nor destroyed, so the total mass of reactants must equal the total mass of products.'
+    },
+    {
+      question: 'If 12 g of Carbon reacts completely with 32 g of Oxygen, what is the total mass of Carbon Dioxide (CO₂) produced?',
+      options: ['20 g', '32 g', '44 g', '12 g'],
+      answer: 'C',
+      explanation: 'Mass of products = mass of reactants = 12 g + 32 g = 44 g.'
+    },
+    {
+      question: 'When balancing a chemical equation, which of the following are you allowed to change?',
+      options: ['The subscripts in chemical formulas', 'The coefficients in front of formulas', 'The chemical symbols of elements', 'The charges of the ions'],
+      answer: 'B',
+      explanation: 'Only coefficients can be adjusted; changing subscripts changes the compound itself.'
+    },
+    {
+      question: 'In the balanced equation 2H₂ + O₂ → 2H₂O, how many total Oxygen atoms are present on the product side?',
+      options: ['1', '2', '3', '4'],
+      answer: 'B',
+      explanation: 'The coefficient 2 multiplies the oxygen in H₂O, giving 2 × 1 = 2 oxygen atoms.'
+    },
+    {
+      question: 'What coefficient is needed in front of O₂ to balance CH₄ + __ O₂ → CO₂ + 2H₂O?',
+      options: ['1', '2', '3', '4'],
+      answer: 'B',
+      explanation: 'The products contain 4 oxygen atoms total, so 2O₂ is needed on the left.'
+    },
+    {
+      question: 'Which balanced equation correctly represents the synthesis of ammonia (NH₃) from nitrogen and hydrogen gases?',
+      options: ['N + 3H → NH₃', 'N₂ + H₂ → NH₃', 'N₂ + 3H₂ → 2NH₃', '2N₂ + 3H₂ → 2NH₃'],
+      answer: 'C',
+      explanation: 'Option C has 2 N atoms and 6 H atoms on both sides.'
+    },
+    {
+      question: 'In a closed reaction flask, 50 g of reactants are mixed. After a gas-producing reaction completes, what should the final mass inside the sealed flask be?',
+      options: ['Less than 50 g because gas escaped.', 'Exactly 50 g.', 'Greater than 50 g because of pressure build-up.', '0 g.'],
+      answer: 'B',
+      explanation: 'In a closed system, no matter can enter or escape, so the mass stays the same.'
+    },
+    {
+      question: 'What is the correct coefficient for Fe when balancing: __ Fe + 3O₂ → 2Fe₂O₃?',
+      options: ['2', '3', '4', '6'],
+      answer: 'C',
+      explanation: 'The product side has 4 Fe atoms total, so the reactant side needs 4Fe.'
+    },
+    {
+      question: 'Why must polyatomic ions that stay unchanged on both sides be balanced as a single unit?',
+      options: ['It is required by physical law.', 'It prevents the total mass from changing.', 'It simplifies atom counting and avoids errors.', 'Polyatomic ions cannot be split into atoms.'],
+      answer: 'C',
+      explanation: 'Treating unchanged polyatomic ions as groups reduces mistakes and speeds up balancing.'
+    },
+    {
+      question: 'Which equation violates the Law of Conservation of Mass?',
+      options: ['2Na + Cl₂ → 2NaCl', 'Mg + 2HCl → MgCl₂ + H₂', 'KClO₃ → KCl + O₂', '2H₂O₂ → 2H₂O + O₂'],
+      answer: 'C',
+      explanation: 'Option C does not have equal oxygen atoms on both sides. The balanced version is 2KClO₃ → 2KCl + 3O₂.'
+    }
+  ];
+
+  const quizState = quizData.map(() => ({ answered: false, selected: null, correct: false }));
+  const quizTrack = document.getElementById('quizTrack');
+  const quizDots = document.getElementById('quizDots');
+  const prevQuizBtn = document.getElementById('prevQuiz');
+  const nextQuizBtn = document.getElementById('nextQuiz');
+  const quizScoreEl = document.getElementById('quizScore');
+  const quizTotalEl = document.getElementById('quizTotal');
+  const quizStatusEl = document.getElementById('quizStatus');
+  let quizIndex = 0;
+
+  const soundEffect = (() => {
+    let ctx = null;
+    return {
+      play() {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!ctx) ctx = new AudioCtor();
+        if (ctx.state === 'suspended') ctx.resume();
+
+        const now = ctx.currentTime;
+        const mainOsc = ctx.createOscillator();
+        const secondOsc = ctx.createOscillator();
+        const thirdOsc = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+
+        mainOsc.type = 'sawtooth';
+        secondOsc.type = 'triangle';
+        thirdOsc.type = 'sine';
+
+        mainOsc.frequency.setValueAtTime(260, now);
+        mainOsc.frequency.exponentialRampToValueAtTime(420, now + 0.2);
+        secondOsc.frequency.setValueAtTime(520, now);
+        secondOsc.frequency.exponentialRampToValueAtTime(760, now + 0.28);
+        thirdOsc.frequency.setValueAtTime(980, now);
+        thirdOsc.frequency.exponentialRampToValueAtTime(1200, now + 0.26);
+
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.14, now + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
+
+        mainOsc.connect(gainNode);
+        secondOsc.connect(gainNode);
+        thirdOsc.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        mainOsc.start(now);
+        secondOsc.start(now + 0.03);
+        thirdOsc.start(now + 0.06);
+
+        mainOsc.stop(now + 0.75);
+        secondOsc.stop(now + 0.8);
+        thirdOsc.stop(now + 0.82);
+      }
+    };
+  })();
+
+  const emojiBurstStyleId = 'emoji-burst-style';
+  if (!document.getElementById(emojiBurstStyleId)) {
+    const style = document.createElement('style');
+    style.id = emojiBurstStyleId;
+    style.textContent = `
+      @keyframes emojiBurst {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 0, 0) scale(0.3) rotate(0deg);
+        }
+        15% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translate3d(var(--dx), var(--dy), 0) scale(2.2) rotate(var(--rot));
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function triggerEmojiBurst(anchorEl, count = 26) {
+    const rect = anchorEl.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    for (let i = 0; i < count; i += 1) {
+      const emoji = document.createElement('div');
+      const text = ['🤩', '✨', '🌟', '🎉', '💥', '🔥', '⭐', '🚀', '😎'][i % 9];
+      emoji.textContent = text;
+      emoji.style.position = 'fixed';
+      emoji.style.left = `${centerX}px`;
+      emoji.style.top = `${centerY}px`;
+      emoji.style.fontSize = `${28 + Math.random() * 34}px`;
+      emoji.style.pointerEvents = 'none';
+      emoji.style.zIndex = '99999';
+      emoji.style.opacity = '0';
+      emoji.style.filter = 'drop-shadow(0 0 10px rgba(246, 207, 88, 0.9))';
+      emoji.style.transform = 'translate3d(0, 0, 0)';
+      emoji.style.setProperty('--dx', `${(Math.random() - 0.5) * 340}px`);
+      emoji.style.setProperty('--dy', `${-80 - Math.random() * 200}px`);
+      emoji.style.setProperty('--rot', `${(Math.random() - 0.5) * 340}deg`);
+      emoji.style.animation = 'emojiBurst 1.4s ease-out forwards';
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 1400);
+    }
+  }
+
+  function celebrateCorrectAnswer(anchorEl) {
+    soundEffect.play();
+    triggerEmojiBurst(anchorEl, 26);
+  }
+
+  function updateQuizScore() {
+    const score = quizState.filter((item) => item.correct).length;
+    const answeredCount = quizState.filter((item) => item.answered).length;
+    quizScoreEl.textContent = score;
+    quizTotalEl.textContent = quizData.length;
+
+    if (answeredCount === quizData.length) {
+      if (score === quizData.length) {
+        quizStatusEl.textContent = 'Perfect score! You mastered the basics.';
+      } else if (score >= Math.ceil(quizData.length * 0.7)) {
+        quizStatusEl.textContent = 'Strong work! You are building solid chemistry skills.';
+      } else if (score >= Math.ceil(quizData.length * 0.4)) {
+        quizStatusEl.textContent = 'Nice effort! Review the key rules and try again.';
+      } else {
+        quizStatusEl.textContent = 'Keep practicing — balancing is a skill that gets faster with repetition.';
+      }
+    } else {
+      quizStatusEl.textContent = `Progress: ${answeredCount}/${quizData.length} answered`;
+    }
+  }
+
+  function renderQuizCarousel() {
+    updateQuizScore();
+    quizTrack.innerHTML = '';
+    quizDots.innerHTML = '';
+
+    quizData.forEach((item, index) => {
+      const slide = document.createElement('div');
+      slide.style.minWidth = '100%';
+      slide.style.boxSizing = 'border-box';
+      slide.style.padding = '0.15rem 0.1rem';
+
+      const questionCard = document.createElement('div');
+      questionCard.style.padding = '1rem 1.1rem';
+      questionCard.style.border = '1px solid rgba(249,216,109,0.36)';
+      questionCard.style.borderRadius = '0.8rem';
+      questionCard.style.background = 'rgba(255,255,255,0.02)';
+      questionCard.style.minHeight = '260px';
+
+      const qTitle = document.createElement('div');
+      qTitle.style.fontWeight = '800';
+      qTitle.style.color = '#f9d86d';
+      qTitle.style.marginBottom = '0.6rem';
+      qTitle.textContent = `Q${index + 1}`;
+
+      const questionText = document.createElement('p');
+      questionText.style.margin = '0 0 0.7rem';
+      questionText.style.fontSize = '1rem';
+      questionText.style.lineHeight = '1.6';
+      questionText.style.color = '#eef3ff';
+      questionText.textContent = item.question;
+
+      const optionsWrap = document.createElement('div');
+      optionsWrap.style.display = 'grid';
+      optionsWrap.style.gap = '0.45rem';
+
+      item.options.forEach((choice, choiceIndex) => {
+        const optionBtn = document.createElement('button');
+        const optionLetter = String.fromCharCode(65 + choiceIndex);
+        const state = quizState[index];
+        const isCorrect = optionLetter === item.answer;
+        const isSelected = state.selected === optionLetter;
+
+        optionBtn.type = 'button';
+        optionBtn.textContent = `${optionLetter}. ${choice}`;
+        optionBtn.style.display = 'block';
+        optionBtn.style.width = '100%';
+        optionBtn.style.textAlign = 'left';
+        optionBtn.style.padding = '0.65rem 0.8rem';
+        optionBtn.style.borderRadius = '0.5rem';
+        optionBtn.style.border = '1px solid rgba(117,245,231,0.35)';
+        optionBtn.style.background = 'rgba(255,255,255,0.02)';
+        optionBtn.style.color = '#eef3ff';
+        optionBtn.style.cursor = 'pointer';
+        optionBtn.style.fontSize = '0.93rem';
+        optionBtn.style.fontWeight = '600';
+        optionBtn.style.transition = 'all 0.15s ease';
+
+        if (state.answered) {
+          optionBtn.disabled = true;
+          if (isCorrect) {
+            optionBtn.style.borderColor = 'rgba(127,242,154,0.9)';
+            optionBtn.style.background = 'rgba(127,242,154,0.16)';
+            optionBtn.style.color = '#ffffff';
+          } else if (isSelected) {
+            optionBtn.style.borderColor = 'rgba(255,110,110,0.9)';
+            optionBtn.style.background = 'rgba(255,110,110,0.12)';
+          }
+        }
+
+        optionBtn.addEventListener('click', () => {
+          quizState[index].answered = true;
+          quizState[index].selected = optionLetter;
+          quizState[index].correct = isCorrect;
+
+          if (isCorrect) {
+            celebrateCorrectAnswer(optionBtn);
+          }
+
+          renderQuizCarousel();
+        });
+
+        optionsWrap.appendChild(optionBtn);
+      });
+
+      questionCard.appendChild(qTitle);
+      questionCard.appendChild(questionText);
+      questionCard.appendChild(optionsWrap);
+
+      if (quizState[index].answered) {
+        const feedback = document.createElement('div');
+        const isCorrectAnswer = quizState[index].correct;
+        feedback.style.marginTop = '0.75rem';
+        feedback.style.padding = '0.7rem 0.8rem';
+        feedback.style.borderRadius = '0.55rem';
+        feedback.style.fontSize = '0.9rem';
+        feedback.style.lineHeight = '1.5';
+        feedback.style.fontWeight = '700';
+        feedback.style.background = isCorrectAnswer ? 'rgba(127,242,154,0.14)' : 'rgba(255,110,110,0.14)';
+        feedback.style.border = isCorrectAnswer ? '1px solid rgba(127,242,154,0.6)' : '1px solid rgba(255,110,110,0.6)';
+        feedback.style.color = '#eef3ff';
+        feedback.textContent = isCorrectAnswer ? `Correct! ${item.explanation}` : `Incorrect. Correct answer: ${item.answer}. ${item.explanation}`;
+        questionCard.appendChild(feedback);
+      }
+
+      slide.appendChild(questionCard);
+      quizTrack.appendChild(slide);
+    });
+
+    quizTrack.style.transform = `translateX(-${quizIndex * 100}%)`;
+
+    quizData.forEach((_, dotIndex) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.style.width = '12px';
+      dot.style.height = '12px';
+      dot.style.border = 'none';
+      dot.style.borderRadius = '50%';
+      dot.style.background = dotIndex === quizIndex ? 'rgba(249,216,109,0.95)' : 'rgba(249,216,109,0.3)';
+      dot.style.cursor = 'pointer';
+      dot.style.transform = dotIndex === quizIndex ? 'scale(1.15)' : 'scale(1)';
+      dot.style.transition = 'all 0.2s ease';
+      dot.addEventListener('click', () => {
+        quizIndex = dotIndex;
+        renderQuizCarousel();
+      });
+      quizDots.appendChild(dot);
+    });
+
+    prevQuizBtn.disabled = quizIndex === 0;
+    nextQuizBtn.disabled = quizIndex === quizData.length - 1;
+    prevQuizBtn.style.opacity = quizIndex === 0 ? '0.45' : '1';
+    nextQuizBtn.style.opacity = quizIndex === quizData.length - 1 ? '0.45' : '1';
+  }
+
+  prevQuizBtn.addEventListener('click', () => {
+    if (quizIndex > 0) {
+      quizIndex -= 1;
+      renderQuizCarousel();
+    }
+  });
+
+  nextQuizBtn.addEventListener('click', () => {
+    if (quizIndex < quizData.length - 1) {
+      quizIndex += 1;
+      renderQuizCarousel();
+    }
+  });
+
+  renderQuizCarousel();
+</script>
+
+<script>
+  const balanceLabReactions = [
+    { name: 'Hydrogen + oxygen -> water', left: [['H2', 2], ['O2', 32]], right: [['H2O', 18]], answer: [2, 1, 2] },
+    { name: 'Nitrogen + hydrogen -> ammonia', left: [['N2', 28], ['H2', 2]], right: [['NH3', 17]], answer: [1, 3, 2] },
+    { name: 'Methane + oxygen -> carbon dioxide + water', left: [['CH4', 16], ['O2', 32]], right: [['CO2', 44], ['H2O', 18]], answer: [1, 2, 1, 2] },
+    { name: 'Iron + oxygen -> iron(III) oxide', left: [['Fe', 55.8], ['O2', 32]], right: [['Fe2O3', 159.7]], answer: [4, 3, 2] },
+    { name: 'Phosphorus + oxygen -> diphosphorus pentoxide', left: [['P4', 124], ['O2', 32]], right: [['P4O10', 284]], answer: [1, 5, 1] },
+    { name: 'Calcium carbonate -> calcium oxide + carbon dioxide', left: [['CaCO3', 100]], right: [['CaO', 56], ['CO2', 44]], answer: [1, 1, 1] },
+    { name: 'Zinc + hydrochloric acid -> zinc chloride + hydrogen', left: [['Zn', 65.4], ['HCl', 36.5]], right: [['ZnCl2', 136.3], ['H2', 2]], answer: [1, 2, 1, 1] },
+    { name: 'Hydrogen + chlorine -> hydrogen chloride', left: [['H2', 2], ['Cl2', 71]], right: [['HCl', 36.5]], answer: [1, 1, 2] }
+  ];
+
+  const balanceLabMolecules = {
+    H2: { atoms: [['H', -18, 0], ['H', 18, 0]], bonds: [[0, 1]] },
+    O2: { atoms: [['O', -18, 0], ['O', 18, 0]], bonds: [[0, 1]] },
+    N2: { atoms: [['N', -18, 0], ['N', 18, 0]], bonds: [[0, 1]] },
+    Cl2: { atoms: [['Cl', -18, 0], ['Cl', 18, 0]], bonds: [[0, 1]] },
+    HCl: { atoms: [['H', -18, 0], ['Cl', 18, 0]], bonds: [[0, 1]] },
+    H2O: { atoms: [['H', -22, 0], ['O', 0, 0], ['H', 22, 0]], bonds: [[0, 1], [1, 2]] },
+    NH3: { atoms: [['N', 0, -5], ['H', -24, 20], ['H', 0, 27], ['H', 24, 20]], bonds: [[0, 1], [0, 2], [0, 3]] },
+    CH4: { atoms: [['C', 0, 0], ['H', -28, -20], ['H', 28, -20], ['H', -28, 24], ['H', 28, 24]], bonds: [[0, 1], [0, 2], [0, 3], [0, 4]] },
+    CO2: { atoms: [['O', -28, 0], ['C', 0, 0], ['O', 28, 0]], bonds: [[0, 1], [1, 2]] },
+    Fe: { atoms: [['Fe', 0, 0]], bonds: [] },
+    Fe2O3: { atoms: [['Fe', -22, 0], ['Fe', 22, 0], ['O', -18, 26], ['O', 18, 26], ['O', 0, -24]], bonds: [[0, 2], [0, 4], [1, 2], [1, 3], [1, 4]] },
+    P4: { atoms: [['P', -24, -12], ['P', 24, -12], ['P', -24, 18], ['P', 24, 18]], bonds: [[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]] },
+    P4O10: { atoms: [['P', -32, -16], ['P', 32, -16], ['P', -32, 18], ['P', 32, 18], ['O', -44, 0], ['O', -12, 0], ['O', 12, 0], ['O', 44, 0], ['O', -12, 30], ['O', 12, 30]], bonds: [[0, 4], [0, 5], [1, 6], [1, 7], [2, 5], [2, 8], [3, 6], [3, 9], [4, 5], [6, 7], [8, 9]] },
+    CaCO3: { atoms: [['Ca', 0, -16], ['C', 0, 0], ['O', -25, 18], ['O', 25, 18], ['O', 0, 30]], bonds: [[0, 1], [1, 2], [1, 3], [1, 4]] },
+    CaO: { atoms: [['Ca', -18, 0], ['O', 18, 0]], bonds: [[0, 1]] },
+    Zn: { atoms: [['Zn', 0, 0]], bonds: [] },
+    ZnCl2: { atoms: [['Zn', 0, 0], ['Cl', -24, 18], ['Cl', 24, 18]], bonds: [[0, 1], [0, 2]] },
+    HCl: { atoms: [['H', -18, 0], ['Cl', 18, 0]], bonds: [[0, 1]] },
+    CH4: { atoms: [['C', 0, 0], ['H', -28, -20], ['H', 28, -20], ['H', -28, 24], ['H', 28, 24]], bonds: [[0, 1], [0, 2], [0, 3], [0, 4]] }
+  };
+
+  const balanceLabSelect = document.getElementById('balanceLabReaction');
+  const balanceLabEquation = document.getElementById('balanceLabEquation');
+  const balanceLabStatus = document.getElementById('balanceLabStatus');
+  const balanceLabReact = document.getElementById('balanceLabReact');
+  const balanceLabNext = document.getElementById('balanceLabNext');
+  const balanceLabCanvas = document.getElementById('balanceLabCanvas');
+  let balanceLabIndex = 0;
+  let balanceLabScore = 0;
+  let balanceLabFrame;
+
+  const balanceSuccessSound = (() => {
+    let ctx = null;
+    return {
+      play() {
+        const AudioCtor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtor) return;
+        if (!ctx) ctx = new AudioCtor();
+        if (ctx.state === 'suspended') ctx.resume();
+
+        const now = ctx.currentTime;
+        const oscA = ctx.createOscillator();
+        const oscB = ctx.createOscillator();
+        const oscC = ctx.createOscillator();
+        const gainNode = ctx.createGain();
+
+        oscA.type = 'sawtooth';
+        oscB.type = 'triangle';
+        oscC.type = 'sine';
+
+        oscA.frequency.setValueAtTime(300, now);
+        oscA.frequency.exponentialRampToValueAtTime(560, now + 0.22);
+        oscB.frequency.setValueAtTime(520, now);
+        oscB.frequency.exponentialRampToValueAtTime(900, now + 0.3);
+        oscC.frequency.setValueAtTime(1100, now);
+        oscC.frequency.exponentialRampToValueAtTime(1480, now + 0.28);
+
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.18, now + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+
+        oscA.connect(gainNode);
+        oscB.connect(gainNode);
+        oscC.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        oscA.start(now);
+        oscB.start(now + 0.04);
+        oscC.start(now + 0.08);
+
+        oscA.stop(now + 0.82);
+        oscB.stop(now + 0.86);
+        oscC.stop(now + 0.9);
+      }
+    };
+  })();
+
+  function triggerBalanceBurst() {
+    triggerEmojiBurst(balanceLabCanvas, 18);
+  }
+  let balanceLabReacting = false;
+  let balanceLabReactionProgress = 0;
+  let balanceLabReactionComplete = false;
+
+  balanceLabReactions.forEach((reaction, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = reaction.name;
+    balanceLabSelect.append(option);
+  });
+
+  function renderBalanceLab() {
+    const reaction = balanceLabReactions[balanceLabIndex];
+    const molecules = [...reaction.left, ...reaction.right];
+    balanceLabReactionComplete = false;
+    balanceLabEquation.replaceChildren();
+
+    molecules.forEach((molecule, index) => {
+      const stepper = document.createElement('span');
+      stepper.className = 'mass-lab__stepper';
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.min = '1';
+      input.max = '99';
+      input.value = '1';
+      input.setAttribute('aria-label', `Coefficient for ${molecule[0]}`);
+      input.addEventListener('input', updateBalanceLab);
+
+      const decrease = document.createElement('button');
+      decrease.type = 'button';
+      decrease.className = 'mass-lab__step';
+      decrease.textContent = '-';
+      decrease.setAttribute('aria-label', `Remove one ${molecule[0]} molecule`);
+      decrease.addEventListener('click', () => {
+        input.value = Math.max(1, Number(input.value) - 1);
+        updateBalanceLab();
+      });
+
+      const increase = document.createElement('button');
+      increase.type = 'button';
+      increase.className = 'mass-lab__step';
+      increase.textContent = '+';
+      increase.setAttribute('aria-label', `Add one ${molecule[0]} molecule`);
+      increase.addEventListener('click', () => {
+        input.value = Math.min(8, Number(input.value) + 1);
+        updateBalanceLab();
+      });
+
+      stepper.append(decrease, input, increase);
+      balanceLabEquation.append(stepper, document.createTextNode(` ${molecule[0]} `));
+      if (index === reaction.left.length - 1) balanceLabEquation.append(document.createTextNode('-> '));
+      else if (index < molecules.length - 1) balanceLabEquation.append(document.createTextNode('+ '));
+    });
+
+    updateBalanceLab();
+  }
+
+  function updateBalanceLab() {
+    const reaction = balanceLabReactions[balanceLabIndex];
+    const values = [...balanceLabEquation.querySelectorAll('input')].map(input => Number(input.value) || 0);
+    const balanced = values.every((value, index) => value === reaction.answer[index]);
+    const reactantMass = reaction.left.reduce((total, molecule, index) => total + molecule[1] * values[index], 0);
+    const productMass = reaction.right.reduce((total, molecule, index) => total + molecule[1] * values[index + reaction.left.length], 0);
+
+    document.getElementById('balanceLabReactantMass').textContent = `${reactantMass} g`;
+    document.getElementById('balanceLabProductMass').textContent = `${productMass} g`;
+    balanceLabStatus.textContent = balanced ? 'Balanced. Conservation of mass confirmed.' : 'Keep adjusting the coefficients.';
+    balanceLabStatus.classList.toggle('is-balanced', balanced);
+    balanceLabReact.disabled = balanceLabReacting;
+    balanceLabEquation.querySelectorAll('button, input').forEach(control => {
+      control.disabled = balanceLabReacting;
+    });
+    animateBalanceLab();
+  }
+
+  function animateBalanceLab() {
+    const context = balanceLabCanvas.getContext('2d');
+    const width = balanceLabCanvas.clientWidth || 600;
+    const height = balanceLabCanvas.clientHeight || 220;
+    balanceLabCanvas.width = width;
+    balanceLabCanvas.height = height;
+    const reaction = balanceLabReactions[balanceLabIndex];
+    const values = [...balanceLabEquation.querySelectorAll('input')].map(input => Math.min(Number(input.value) || 0, 8));
+    const molecules = [...reaction.left, ...reaction.right];
+    const instances = [];
+
+    molecules.forEach((molecule, moleculeIndex) => {
+      for (let count = 0; count < values[moleculeIndex]; count += 1) {
+        instances.push({ formula: molecule[0], side: moleculeIndex < reaction.left.length ? 'left' : 'right' });
+      }
+    });
+
+    cancelAnimationFrame(balanceLabFrame);
+
+    function frame() {
+      context.fillStyle = '#081c2a';
+      context.fillRect(0, 0, width, height);
+      context.fillStyle = '#edf5f2';
+      context.font = '700 15px Oxanium, sans-serif';
+      context.textAlign = 'center';
+      context.fillText('REACTANTS', width * 0.25, 24);
+      context.fillText(balanceLabReactionComplete || balanceLabReacting ? 'PRODUCTS' : 'PRODUCTS LOCKED', width * 0.75, 24);
+      context.fillStyle = '#f6b73c';
+      context.font = '700 20px Oxanium, sans-serif';
+      context.fillText('->', width / 2, height / 2);
+
+      if (balanceLabReacting) {
+        balanceLabReactionProgress = Math.min(1, balanceLabReactionProgress + 0.018);
+        context.fillStyle = '#f6b73c';
+        context.font = '700 12px Oxanium, sans-serif';
+        context.fillText('BONDS REARRANGING', width / 2, height / 2 + 28);
+      }
+
+      const groups = {
+        left: instances.filter(instance => instance.side === 'left'),
+        right: balanceLabReactionComplete || balanceLabReacting ? instances.filter(instance => instance.side === 'right') : []
+      };
+
+      ['left', 'right'].forEach((side) => {
+        const group = groups[side];
+        const centerX = side === 'left' ? width * 0.25 : width * 0.75;
+        context.globalAlpha = balanceLabReacting ? (side === 'left' ? 1 - balanceLabReactionProgress : balanceLabReactionProgress) : 1;
+
+        group.forEach((instance, index) => {
+          const molecule = balanceLabMolecules[instance.formula];
+          const columns = Math.max(1, Math.ceil(Math.sqrt(group.length)));
+          const column = index % columns;
+          const row = Math.floor(index / columns);
+          const gap = 94;
+          const x = centerX + (column - (columns - 1) / 2) * gap;
+          const y = 64 + row * 72 + Math.sin(Date.now() / 500 + index) * 3;
+
+          context.strokeStyle = '#91b7c2';
+          context.lineWidth = 3;
+          molecule.bonds.forEach(([from, to]) => {
+            context.beginPath();
+            context.moveTo(x + molecule.atoms[from][1], y + molecule.atoms[from][2]);
+            context.lineTo(x + molecule.atoms[to][1], y + molecule.atoms[to][2]);
+            context.stroke();
+          });
+
+          molecule.atoms.forEach(([label, atomX, atomY]) => {
+            context.beginPath();
+            context.arc(x + atomX, y + atomY, 13, 0, Math.PI * 2);
+            context.fillStyle = label === 'O' ? '#ff5ca8' : label === 'N' ? '#f6b73c' : label === 'Cl' ? '#c5ebff' : label === 'Fe' ? '#f2d588' : '#75f5e7';
+            context.fill();
+            context.fillStyle = '#081c2a';
+            context.font = '700 11px Oxanium, sans-serif';
+            context.fillText(label, x + atomX, y + atomY + 4);
+          });
+        });
+      });
+
+      context.globalAlpha = 1;
+
+      if (balanceLabReacting) {
+        for (let spark = 0; spark < 8; spark += 1) {
+          const angle = (Math.PI * 2 * spark) / 8 + balanceLabReactionProgress;
+          const distance = 18 + balanceLabReactionProgress * 42;
+          context.fillStyle = spark % 2 ? '#75f5e7' : '#ff5ca8';
+          context.beginPath();
+          context.arc(width / 2 + Math.cos(angle) * distance, height / 2 + Math.sin(angle) * distance, 4, 0, Math.PI * 2);
+          context.fill();
+        }
+      }
+
+      balanceLabFrame = requestAnimationFrame(frame);
+    }
+
+    frame();
+  }
+
+  balanceLabSelect.addEventListener('change', () => {
+    balanceLabIndex = Number(balanceLabSelect.value);
+    renderBalanceLab();
+  });
+
+  balanceLabNext.addEventListener('click', () => {
+    balanceLabIndex = (balanceLabIndex + 1) % balanceLabReactions.length;
+    balanceLabSelect.value = balanceLabIndex;
+    renderBalanceLab();
+  });
+
+  balanceLabReact.addEventListener('click', () => {
+    const reaction = balanceLabReactions[balanceLabIndex];
+    const values = [...balanceLabEquation.querySelectorAll('input')].map(input => Number(input.value) || 0);
+    const balanced = values.every((value, index) => value === reaction.answer[index]);
+
+    if (!balanced) {
+      balanceLabStatus.textContent = 'Balance the reaction first, then press React.';
+      balanceLabStatus.classList.remove('is-balanced');
+      return;
+    }
+
+    balanceLabReacting = true;
+    balanceLabReactionProgress = 0;
+    balanceLabReactionComplete = false;
+    balanceLabStatus.textContent = 'Reaction running: bonds are rearranging...';
+    balanceLabEquation.querySelectorAll('button, input').forEach(control => {
+      control.disabled = true;
+    });
+    balanceLabReact.disabled = true;
+    balanceLabCanvas.classList.add('is-reacting');
+    balanceLabScore += 10;
+    document.getElementById('balanceLabScore').textContent = balanceLabScore;
+
+    setTimeout(() => {
+      balanceLabReacting = false;
+      balanceLabReactionProgress = 0;
+      balanceLabReactionComplete = true;
+      balanceLabStatus.textContent = 'Reaction complete. Mass stayed conserved.';
+      balanceLabStatus.classList.add('is-balanced');
+      balanceLabCanvas.classList.remove('is-reacting');
+      balanceLabReact.disabled = false;
+      balanceLabEquation.querySelectorAll('button, input').forEach(control => {
+        control.disabled = false;
+      });
+      balanceSuccessSound.play();
+      triggerBalanceBurst();
+    }, 1200);
+  });
+
+  window.addEventListener('resize', animateBalanceLab);
+  renderBalanceLab();
+  animateBalanceLab();
+</script>
+
+<script>
+  (() => {
+    const reactions = {
+      ammonia: {
+        label: 'N₂ + 3 H₂ → 2 NH₃',
+        reactants: [
+          { formula: 'N₂', coefficient: 1, molarMass: 28.014, initial: 2 },
+          { formula: 'H₂', coefficient: 3, molarMass: 2.016, initial: 3 }
+        ],
+        products: [
+          { formula: 'NH₃', coefficient: 2, molarMass: 17.031 }
+        ]
+      },
+      propane: {
+        label: 'C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O',
+        reactants: [
+          { formula: 'C₃H₈', coefficient: 1, molarMass: 44.097, initial: 2 },
+          { formula: 'O₂', coefficient: 5, molarMass: 31.998, initial: 5 }
+        ],
+        products: [
+          { formula: 'CO₂', coefficient: 3, molarMass: 44.009 },
+          { formula: 'H₂O', coefficient: 4, molarMass: 18.015 }
+        ]
+      },
+      iron: {
+        label: '4 Fe + 3 O₂ → 2 Fe₂O₃',
+        reactants: [
+          { formula: 'Fe', coefficient: 4, molarMass: 55.845, initial: 4 },
+          { formula: 'O₂', coefficient: 3, molarMass: 31.998, initial: 2 }
+        ],
+        products: [
+          { formula: 'Fe₂O₃', coefficient: 2, molarMass: 159.687 }
+        ]
+      }
+    };
+    const challenges = [
+      { reaction: 'ammonia', masses: [56.03, 6.05], actual: 25 },
+      { reaction: 'propane', masses: [44.10, 127.99], actual: 88 },
+      { reaction: 'iron', masses: [223.38, 48.00], actual: 120 }
+    ];
+    const $ = (id) => document.getElementById(id);
+    const activity = $('yield-play');
+    const tabs = [...activity.querySelectorAll('.yield-play__step')];
+    const slides = [...activity.querySelectorAll('.yield-play__slide')];
+    const simulatorSelect = $('yield-reaction');
+    let activeReaction = reactions[simulatorSelect.value];
+    let practice;
+    let challenge;
+    let challengeScore = 0;
+    let challengeStreak = 0;
+    let challengeAnswered = false;
+    let activeSlide = 0;
+
+    function showSlide(index) {
+      activeSlide = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === activeSlide;
+        slide.hidden = !active;
+        slide.classList.toggle('is-active', active);
+        tabs[slideIndex].classList.toggle('is-active', active);
+        tabs[slideIndex].setAttribute('aria-selected', String(active));
+        tabs[slideIndex].tabIndex = active ? 0 : -1;
+      });
+      $('yield-play-progress').textContent = `Step ${activeSlide + 1} of ${slides.length}`;
+      $('yield-play-previous').disabled = activeSlide === 0;
+      $('yield-play-next').disabled = activeSlide === slides.length - 1;
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => showSlide(Number(tab.dataset.yieldSlide))));
+    tabs.forEach((tab, index) => tab.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+      event.preventDefault();
+      const nextIndex = (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      showSlide(nextIndex);
+      tabs[nextIndex].focus();
+    }));
+    $('yield-play-previous').addEventListener('click', () => showSlide(activeSlide - 1));
+    $('yield-play-next').addEventListener('click', () => showSlide(activeSlide + 1));
+
+    function format(number, digits = 3) {
+      return Number(number.toFixed(digits)).toString();
+    }
+
+    function getExtent(amounts, reaction) {
+      return Math.min(...reaction.reactants.map((reactant, index) => amounts[index] / reactant.coefficient));
+    }
+
+    function getLimiterIndex(amounts, reaction) {
+      const extents = reaction.reactants.map((reactant, index) => amounts[index] / reactant.coefficient);
+      return extents.indexOf(Math.min(...extents));
+    }
+
+    function getSimulatorAmounts() {
+      return activeReaction.reactants.map((_, index) => {
+        const input = $('yield-sim-reactants').querySelector(`[data-yield-reactant="${index}"]`);
+        const amount = Number(input.value);
+        const bounded = Number.isFinite(amount) ? Math.max(0, amount) : 0;
+        if (input.value !== String(bounded)) input.value = String(bounded);
+        return bounded;
+      });
+    }
+
+    function renderSimulator() {
+      const equation = $('yield-sim-reactants');
+      equation.replaceChildren();
+      activeReaction.reactants.forEach((reactant, index) => {
+        if (index) {
+          const plus = document.createElement('span');
+          plus.className = 'mole-play__operator';
+          plus.textContent = '+';
+          equation.append(plus);
+        }
+        const card = document.createElement('div');
+        card.className = 'mole-play__species';
+        const name = document.createElement('span');
+        name.className = 'mole-play__species-name';
+        name.innerHTML = `${reactant.formula}<small>coefficient ${reactant.coefficient}</small>`;
+        const control = document.createElement('span');
+        control.className = 'mole-play__stepper';
+        const minus = document.createElement('button');
+        minus.type = 'button';
+        minus.textContent = '−';
+        minus.setAttribute('aria-label', `Decrease available ${reactant.formula}`);
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = '0';
+        input.step = '0.1';
+        input.value = String(reactant.initial);
+        input.dataset.yieldReactant = String(index);
+        input.setAttribute('aria-label', `Available moles of ${reactant.formula}`);
+        const plus = document.createElement('button');
+        plus.type = 'button';
+        plus.textContent = '+';
+        plus.setAttribute('aria-label', `Increase available ${reactant.formula}`);
+        input.addEventListener('input', updateSimulator);
+        minus.addEventListener('click', () => {
+          input.value = String(Math.max(0, (Number(input.value) || 0) - 0.1));
+          updateSimulator();
+        });
+        plus.addEventListener('click', () => {
+          input.value = String((Number(input.value) || 0) + 0.1);
+          updateSimulator();
+        });
+        control.append(minus, input, plus);
+        card.append(name, control);
+        equation.append(card);
+      });
+      const arrow = document.createElement('span');
+      arrow.className = 'mole-play__operator';
+      arrow.textContent = '→';
+      equation.append(arrow);
+      activeReaction.products.forEach((product, index) => {
+        if (index) {
+          const plus = document.createElement('span');
+          plus.className = 'mole-play__operator';
+          plus.textContent = '+';
+          equation.append(plus);
+        }
+        const productLabel = document.createElement('strong');
+        productLabel.className = 'mole-play__species-name';
+        productLabel.textContent = `${product.coefficient} ${product.formula}`;
+        equation.append(productLabel);
+      });
+      updateSimulator();
+    }
+
+    function updateSimulator() {
+      const amounts = getSimulatorAmounts();
+      const extent = getExtent(amounts, activeReaction);
+      const product = activeReaction.products[0];
+      const comparison = $('yield-sim-comparison');
+      comparison.replaceChildren();
+      const potentialYields = activeReaction.reactants.map((reactant, index) => (
+        amounts[index] / reactant.coefficient * product.coefficient
+      ));
+      const lowestYield = Math.min(...potentialYields);
+      const limitingIndices = potentialYields
+        .map((potential, index) => Math.abs(potential - lowestYield) <= Math.max(0.0001, lowestYield * 0.0001) ? index : -1)
+        .filter((index) => index >= 0);
+      const maximumYield = Math.max(0.01, ...potentialYields);
+      potentialYields.forEach((potential, index) => {
+        const row = document.createElement('div');
+        row.className = 'yield-play__compare-row';
+        if (limitingIndices.includes(index)) row.classList.add('is-limiting');
+        const name = document.createElement('span');
+        name.textContent = `${activeReaction.reactants[index].formula} → ${product.formula}`;
+        const track = document.createElement('span');
+        track.className = 'yield-play__compare-track';
+        const fill = document.createElement('span');
+        fill.className = 'yield-play__compare-fill';
+        fill.style.display = 'block';
+        fill.style.width = `${Math.max(potential > 0 ? 2 : 0, potential / maximumYield * 100)}%`;
+        track.append(fill);
+        const amount = document.createElement('strong');
+        amount.textContent = `${format(potential)} mol ${product.formula}`;
+        row.append(name, track, amount);
+        comparison.append(row);
+      });
+      const theoreticalProduct = extent * product.coefficient;
+      const hasBalancedAmounts = amounts.every((amount) => amount > 0)
+        && limitingIndices.length === activeReaction.reactants.length;
+      const limitingDescription = hasBalancedAmounts
+        ? 'The reactants are in a balanced ratio, so both are completely consumed.'
+        : `<strong>${limitingIndices.map((index) => activeReaction.reactants[index].formula).join(' and ')}</strong> ${limitingIndices.length > 1 ? 'are' : 'is'} limiting.`;
+      $('yield-sim-result').innerHTML = `${limitingDescription} The maximum is <strong>${format(theoreticalProduct)} mol ${product.formula}</strong> (${format(theoreticalProduct * product.molarMass)} g).`;
+      renderInventory(amounts, extent, limitingIndices);
+    }
+
+    function renderInventory(amounts, extent, limitingIndices) {
+      const inventory = $('yield-sim-inventory');
+      inventory.replaceChildren();
+      activeReaction.reactants.forEach((reactant, index) => {
+        const remaining = Math.max(0, amounts[index] - extent * reactant.coefficient);
+        const row = document.createElement('div');
+        row.className = 'mole-play__particle-row';
+        const label = document.createElement('span');
+        label.textContent = `${reactant.formula}${remaining < 0.0001 ? ' · fully consumed' : limitingIndices.includes(index) ? ' · limiting' : ' · excess'}`;
+        const track = document.createElement('span');
+        track.className = 'mole-play__particle-track';
+        const reacted = Math.max(0, amounts[index] - remaining);
+        const reactedBar = document.createElement('span');
+        reactedBar.className = 'mole-play__particle-fill';
+        reactedBar.style.display = 'block';
+        reactedBar.style.width = `${amounts[index] > 0 ? reacted / amounts[index] * 100 : 0}%`;
+        track.append(reactedBar);
+        const value = document.createElement('strong');
+        value.textContent = `${format(remaining)} mol left`;
+        row.append(label, track, value);
+        inventory.append(row);
+      });
+      activeReaction.products.forEach((product) => {
+        const row = document.createElement('div');
+        row.className = 'mole-play__particle-row';
+        const label = document.createElement('span');
+        label.textContent = `${product.formula} · theoretical`;
+        const track = document.createElement('span');
+        track.className = 'mole-play__particle-track';
+        const bar = document.createElement('span');
+        bar.className = 'mole-play__particle-fill';
+        bar.style.display = 'block';
+        bar.style.width = `${Math.min(100, product.coefficient * extent / Math.max(0.01, ...activeReaction.products.map((item) => item.coefficient * extent)) * 100)}%`;
+        track.append(bar);
+        const amount = document.createElement('strong');
+        amount.textContent = `${format(product.coefficient * extent)} mol`;
+        row.append(label, track, amount);
+        inventory.append(row);
+      });
+    }
+
+    simulatorSelect.addEventListener('change', () => {
+      activeReaction = reactions[simulatorSelect.value];
+      renderSimulator();
+    });
+    renderSimulator();
+
+    function fillLimiterSelect(select, reaction, selectedIndex = -1) {
+      select.replaceChildren();
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = 'Choose a reactant';
+      select.append(placeholder);
+      reaction.reactants.forEach((reactant, index) => {
+        const option = document.createElement('option');
+        option.value = String(index);
+        option.textContent = reactant.formula;
+        select.append(option);
+      });
+      if (selectedIndex >= 0) select.value = String(selectedIndex);
+    }
+
+    const practiceScenarios = [
+      { reaction: 'ammonia', moles: [2, 3] },
+      { reaction: 'ammonia', moles: [1.5, 6] },
+      { reaction: 'propane', moles: [2, 5] },
+      { reaction: 'propane', moles: [1, 8] },
+      { reaction: 'iron', moles: [4, 2] }
+    ];
+    let practiceTiles = [];
+    let practiceSlots = {};
+    let selectedPracticeTile = null;
+
+    function makePracticeTile(id, text, values) {
+      return { id, text, ...values };
+    }
+
+    function updatePracticeTileSelection(tileId) {
+      $('yield-practice-tiles').querySelectorAll('.mole-play__tile').forEach((button) => {
+        const selected = button.dataset.tileId === tileId;
+        button.classList.toggle('is-selected', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+    }
+
+    function renderPracticeSlots() {
+      $('yield-practice-calculations').querySelectorAll('[data-yield-practice-slot]').forEach((slot) => {
+        const key = slot.dataset.yieldPracticeSlot;
+        const tile = practiceTiles.find((candidate) => candidate.id === practiceSlots[key]);
+        slot.dataset.tileId = tile?.id || '';
+        if (tile) {
+          if (tile.position === 'limiter') {
+            slot.textContent = tile.text;
+          } else {
+            const rowNumerator = practiceTiles.find((candidate) => candidate.id === practiceSlots[`r${tile.row}-numerator`]);
+            const rowDenominator = practiceTiles.find((candidate) => candidate.id === practiceSlots[`r${tile.row}-denominator`]);
+            const cancelling = Boolean(rowNumerator?.correct && rowDenominator?.correct);
+            const cancelledUnit = tile.position === 'denominator' && cancelling;
+            slot.innerHTML = `${tile.amount} mol <span class="mole-play__unit${cancelledUnit ? ' is-cancelled' : ''}">${tile.formula}</span>`;
+          }
+        } else {
+          slot.textContent = slot.dataset.emptyLabel;
+        }
+        slot.classList.toggle('is-filled', Boolean(tile));
+      });
+      const limiter = practiceTiles.find((tile) => tile.id === practiceSlots.limiter);
+      const limiterSlot = $('yield-practice-limiter-slot');
+      limiterSlot.dataset.tileId = limiter?.id || '';
+      limiterSlot.innerHTML = limiter ? limiter.text : limiterSlot.dataset.emptyLabel;
+      limiterSlot.classList.toggle('is-filled', Boolean(limiter));
+      $('yield-practice-calculations').querySelectorAll('.yield-play__practice-given').forEach((given) => {
+        const index = Number(given.dataset.reactantIndex);
+        const denominator = practiceTiles.find((tile) => tile.id === practiceSlots[`r${index}-denominator`]);
+        const numerator = practiceTiles.find((tile) => tile.id === practiceSlots[`r${index}-numerator`]);
+        const isCorrectFactor = Boolean(numerator?.correct && denominator?.correct);
+        given.querySelector('.mole-play__unit').classList.toggle('is-cancelled', isCorrectFactor);
+      });
+    }
+
+    function placePracticeTile(slot, tileId, remove = false) {
+      const key = slot.dataset.yieldPracticeSlot;
+      if (remove) {
+        practiceSlots[key] = null;
+      } else if (practiceTiles.some((tile) => tile.id === tileId)) {
+        Object.keys(practiceSlots).forEach((slotKey) => {
+          if (practiceSlots[slotKey] === tileId) practiceSlots[slotKey] = null;
+        });
+        practiceSlots[key] = tileId;
+      }
+      renderPracticeSlots();
+    }
+
+    function attachPracticeTileSlot(slot) {
+      slot.addEventListener('click', () => {
+        if (selectedPracticeTile) {
+          placePracticeTile(slot, selectedPracticeTile);
+          selectedPracticeTile = null;
+          updatePracticeTileSelection(null);
+        } else if (slot.dataset.tileId) {
+          placePracticeTile(slot, slot.dataset.tileId, true);
+        }
+      });
+      slot.addEventListener('dragover', (event) => event.preventDefault());
+      slot.addEventListener('drop', (event) => {
+        event.preventDefault();
+        const tileId = event.dataTransfer.getData('text/plain');
+        if (tileId) placePracticeTile(slot, tileId);
+        selectedPracticeTile = null;
+        updatePracticeTileSelection(null);
+      });
+    }
+
+    function createPracticeTile(tile) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'mole-play__tile';
+      button.draggable = true;
+      button.textContent = tile.text.replace(/<[^>]+>/g, '');
+      button.dataset.tileId = tile.id;
+      button.setAttribute('aria-pressed', 'false');
+      let suppressClick = false;
+      button.addEventListener('click', () => {
+        if (suppressClick) {
+          suppressClick = false;
+          return;
+        }
+        selectedPracticeTile = tile.id;
+        updatePracticeTileSelection(tile.id);
+      });
+      button.addEventListener('dragstart', (event) => {
+        suppressClick = true;
+        event.dataTransfer.setData('text/plain', tile.id);
+      });
+      button.addEventListener('dragend', () => {
+        setTimeout(() => { suppressClick = false; }, 0);
+      });
+      return button;
+    }
+
+    function createPracticeSlot(key, label) {
+      return `<button class="mole-play__slot" type="button" data-yield-practice-slot="${key}" data-empty-label="${label}" aria-label="${label}">${label}</button>`;
+    }
+
+    function renderPractice() {
+      practice = practiceScenarios[Math.floor(Math.random() * practiceScenarios.length)];
+      const reaction = reactions[practice.reaction];
+      const limiterIndex = getLimiterIndex(practice.moles, reaction);
+      const product = reaction.products[0];
+      practice.expectedProductMoles = reaction.reactants.map((reactant, index) => (
+        practice.moles[index] / reactant.coefficient * product.coefficient
+      ));
+      practice.reaction = reaction;
+      practice.limiterIndex = limiterIndex;
+      $('yield-practice-prompt').textContent = `For ${reaction.label}, ${format(practice.moles[0], 2)} mol ${reaction.reactants[0].formula} reacts with ${format(practice.moles[1], 2)} mol ${reaction.reactants[1].formula}. Which reactant limits the reaction, and how many moles of ${product.formula} can form?`;
+      practiceSlots = { limiter: null };
+      practiceTiles = [];
+      selectedPracticeTile = null;
+      $('yield-practice-feedback').textContent = '';
+      $('yield-practice-feedback').className = 'mole-play__feedback';
+      $('yield-practice-calculations').innerHTML = reaction.reactants.map((reactant, index) => {
+        const rowKey = `r${index}`;
+        practiceSlots[`${rowKey}-numerator`] = null;
+        practiceSlots[`${rowKey}-denominator`] = null;
+        practiceSlots[`${rowKey}-answer`] = null;
+        return `<div class="yield-play__practice-row"><strong class="yield-play__practice-label">${reactant.formula} → ${product.formula}</strong><div class="yield-play__practice-equation"><span class="yield-play__practice-given" data-reactant-index="${index}">${format(practice.moles[index], 2)} mol <span class="mole-play__unit">${reactant.formula}</span></span><span aria-hidden="true">×</span><div class="yield-play__practice-factor">${createPracticeSlot(`${rowKey}-numerator`, 'Numerator')}<span class="mole-play__fraction-rule"></span>${createPracticeSlot(`${rowKey}-denominator`, 'Denominator')}</div><span aria-hidden="true">=</span>${createPracticeSlot(`${rowKey}-answer`, 'Product moles')}</div></div>`;
+      }).join('');
+      $('yield-practice-tiles').replaceChildren();
+      const addTile = (tile) => practiceTiles.push(tile);
+      reaction.reactants.forEach((reactant, index) => {
+        const rowKey = `r${index}`;
+        const correctProductMoles = practice.expectedProductMoles[index];
+        const addValueTiles = (position, correct, decoy) => {
+          addTile(makePracticeTile(`${rowKey}-${position}-correct`, `${correct.amount} mol ${correct.formula}`, { row: index, position, amount: correct.amount, formula: correct.formula, correct: true }));
+          addTile(makePracticeTile(`${rowKey}-${position}-decoy`, `${decoy.amount} mol ${decoy.formula}`, { row: index, position, amount: decoy.amount, formula: decoy.formula, correct: false }));
+        };
+        addValueTiles('numerator', { amount: product.coefficient, formula: product.formula }, { amount: reactant.coefficient, formula: reactant.formula });
+        addValueTiles('denominator', { amount: reactant.coefficient, formula: reactant.formula }, { amount: product.coefficient, formula: product.formula });
+        addValueTiles('answer', { amount: format(correctProductMoles), formula: product.formula }, { amount: format(correctProductMoles + 1), formula: product.formula });
+      });
+      reaction.reactants.forEach((reactant, index) => {
+        addTile(makePracticeTile(`limiter-${index}`, reactant.formula, { position: 'limiter', reactantIndex: index, correct: index === limiterIndex }));
+      });
+      practiceTiles.forEach((tile) => $('yield-practice-tiles').append(createPracticeTile(tile)));
+      $('yield-practice-calculations').querySelectorAll('[data-yield-practice-slot]').forEach(attachPracticeTileSlot);
+      attachPracticeTileSlot($('yield-practice-limiter-slot'));
+      $('yield-practice-limiter-slot').dataset.emptyLabel = 'Drop limiting reactant here';
+      renderPracticeSlots();
+    }
+
+    $('yield-practice-new').addEventListener('click', renderPractice);
+    $('yield-practice-clear').addEventListener('click', () => {
+      Object.keys(practiceSlots).forEach((key) => { practiceSlots[key] = null; });
+      selectedPracticeTile = null;
+      updatePracticeTileSelection(null);
+      $('yield-practice-feedback').textContent = '';
+      $('yield-practice-feedback').className = 'mole-play__feedback';
+      renderPracticeSlots();
+    });
+    $('yield-practice-check').addEventListener('click', () => {
+      const correctConversions = practice.reaction.reactants.every((_, index) => (
+        ['numerator', 'denominator', 'answer'].every((position) => {
+          const tile = practiceTiles.find((candidate) => candidate.id === practiceSlots[`r${index}-${position}`]);
+          return tile?.row === index && tile.position === position && tile.correct;
+        })
+      ));
+      const limiterTile = practiceTiles.find((tile) => tile.id === practiceSlots.limiter);
+      const correctLimiter = limiterTile?.position === 'limiter' && limiterTile.correct;
+      const feedback = $('yield-practice-feedback');
+      if (correctLimiter && correctConversions) {
+        feedback.className = 'mole-play__feedback is-correct';
+        feedback.textContent = 'Correct! The units cancel and the smaller product amount identifies the limiting reactant.';
+        celebrateCorrectAnswer($('yield-practice-check'));
+      } else {
+        feedback.className = 'mole-play__feedback is-incorrect';
+        feedback.textContent = 'Not quite. Check each coefficient ratio, calculated product amount, and the smaller-product comparison.';
+      }
+    });
+    renderPractice();
+
+    function challengeEntry(field, label, unit, cancelled = false) {
+      return `<label class="yield-play__challenge-entry"><input type="number" min="0" step="any" inputmode="decimal" data-yield-challenge-field="${field}" aria-label="${label}" placeholder="?"><span class="mole-play__unit${cancelled ? ' is-cancelled' : ''}">${unit}</span></label>`;
+    }
+
+    function challengeFactor(numeratorField, denominatorField, reactant, product, reactantIndex, stage) {
+      let numeratorUnit;
+      let denominatorUnit;
+      let numeratorLabel;
+      let denominatorLabel;
+      if (stage === 'mass-to-moles') {
+        numeratorUnit = `mol ${reactant.formula}`;
+        denominatorUnit = `g ${reactant.formula}`;
+        numeratorLabel = `Reactant ${reactantIndex + 1} grams-to-moles numerator`;
+        denominatorLabel = `Reactant ${reactantIndex + 1} grams-to-moles denominator`;
+      } else if (stage === 'mole-ratio') {
+        numeratorUnit = `mol ${product.formula}`;
+        denominatorUnit = `mol ${reactant.formula}`;
+        numeratorLabel = `Reactant ${reactantIndex + 1} mole-ratio numerator`;
+        denominatorLabel = `Reactant ${reactantIndex + 1} mole-ratio denominator`;
+      } else {
+        numeratorUnit = `g ${product.formula}`;
+        denominatorUnit = `mol ${product.formula}`;
+        numeratorLabel = `Reactant ${reactantIndex + 1} grams-product numerator`;
+        denominatorLabel = `Reactant ${reactantIndex + 1} grams-product denominator`;
+      }
+      return `<div class="yield-play__challenge-factor"><span class="mole-play__bridge-label">${stage === 'mass-to-moles' ? 'g → mol' : stage === 'mole-ratio' ? 'Mole ratio' : 'mol → g'}</span>${challengeEntry(numeratorField, numeratorLabel, numeratorUnit)}<span class="mole-play__fraction-rule"></span>${challengeEntry(denominatorField, denominatorLabel, denominatorUnit, true)}</div>`;
+    }
+
+    function buildChallengePipeline(reaction, masses) {
+      const product = reaction.products[0];
+      const expectedValues = {};
+      const equations = reaction.reactants.map((reactant, index) => {
+        const key = `r${index}`;
+        const productGrams = masses[index] / reactant.molarMass / reactant.coefficient * product.coefficient * product.molarMass;
+        expectedValues[`${key}-given`] = masses[index];
+        expectedValues[`${key}-mass-num`] = 1;
+        expectedValues[`${key}-mass-den`] = reactant.molarMass;
+        expectedValues[`${key}-ratio-num`] = product.coefficient;
+        expectedValues[`${key}-ratio-den`] = reactant.coefficient;
+        expectedValues[`${key}-product-num`] = product.molarMass;
+        expectedValues[`${key}-product-den`] = 1;
+        expectedValues[`${key}-answer`] = productGrams;
+        return `<div class="yield-play__challenge-row"><strong class="yield-play__practice-label">${reactant.formula} → ${product.formula}</strong><div class="yield-play__challenge-equation"><span class="yield-play__challenge-given">${challengeEntry(`${key}-given`, `Starting mass of ${reactant.formula}`, `g ${reactant.formula}`, true)}</span><span aria-hidden="true">×</span>${challengeFactor(`${key}-mass-num`, `${key}-mass-den`, reactant, product, index, 'mass-to-moles')}<span aria-hidden="true">×</span>${challengeFactor(`${key}-ratio-num`, `${key}-ratio-den`, reactant, product, index, 'mole-ratio')}<span aria-hidden="true">×</span>${challengeFactor(`${key}-product-num`, `${key}-product-den`, reactant, product, index, 'moles-to-grams')}<span aria-hidden="true">=</span><div class="yield-play__challenge-result">${challengeEntry(`${key}-answer`, `Possible product mass from ${reactant.formula}`, `g ${product.formula}`)}</div></div></div>`;
+      });
+      return { markup: equations.join(''), expectedValues };
+    }
+
+    function renderChallenge() {
+      challenge = challenges[Math.floor(Math.random() * challenges.length)];
+      const reaction = reactions[challenge.reaction];
+      const moles = challenge.masses.map((mass, index) => mass / reaction.reactants[index].molarMass);
+      const limiterIndex = getLimiterIndex(moles, reaction);
+      const extent = getExtent(moles, reaction);
+      const product = reaction.products[0];
+      const theoreticalGrams = extent * product.coefficient * product.molarMass;
+      const percent = challenge.actual / theoreticalGrams * 100;
+      challenge.limiterIndex = limiterIndex;
+      challenge.theoreticalGrams = theoreticalGrams;
+      challenge.percent = percent;
+      challenge.answered = false;
+      $('yield-challenge-prompt').textContent = `For ${reaction.label}, ${challenge.masses.map((mass, index) => `${format(mass, 2)} g ${reaction.reactants[index].formula}`).join(' and ')} are combined. If ${format(challenge.actual, 2)} g of ${product.formula} is collected, identify the limiting reactant and calculate theoretical yield and percent yield.`;
+      const pipeline = buildChallengePipeline(reaction, challenge.masses);
+      challenge.pipelineValues = pipeline.expectedValues;
+      $('yield-challenge-pipeline').innerHTML = `<p class="mole-play__bridge-label">Enter every number in each conversion factor. Crossed-out units cancel; compare the final product masses.</p>${pipeline.markup}`;
+      fillLimiterSelect($('yield-challenge-limiter'), reaction);
+      $('yield-challenge-theoretical').value = '';
+      $('yield-challenge-percent').value = '';
+      $('yield-challenge-feedback').textContent = '';
+      $('yield-challenge-feedback').className = 'mole-play__feedback';
+    }
+
+    $('yield-challenge-check').addEventListener('click', () => {
+      const feedback = $('yield-challenge-feedback');
+      if (challenge.answered) {
+        feedback.className = 'mole-play__feedback is-correct';
+        feedback.textContent = 'Already scored for this question. Choose Next question to continue.';
+        return;
+      }
+      const selected = Number($('yield-challenge-limiter').value);
+      const theoretical = Number($('yield-challenge-theoretical').value);
+      const percent = Number($('yield-challenge-percent').value);
+      const pipelineCorrect = Object.entries(challenge.pipelineValues).every(([field, expected]) => {
+        const input = $('yield-challenge-pipeline').querySelector(`[data-yield-challenge-field="${field}"]`);
+        const entered = Number(input.value);
+        return input.value.trim() !== '' && Number.isFinite(entered)
+          && Math.abs(entered - expected) <= Math.max(0.01, Math.abs(expected) * 0.005);
+      });
+      const correctLimiter = selected === challenge.limiterIndex;
+      const correctTheoretical = Number.isFinite(theoretical) && Math.abs(theoretical - challenge.theoreticalGrams) <= Math.max(0.08, challenge.theoreticalGrams * 0.005);
+      const correctPercent = Number.isFinite(percent) && Math.abs(percent - challenge.percent) <= 0.3;
+      if (pipelineCorrect && correctLimiter && correctTheoretical && correctPercent) {
+        challenge.answered = true;
+        challengeScore += 10;
+        challengeStreak += 1;
+        $('yield-challenge-score').textContent = String(challengeScore);
+        $('yield-challenge-streak').textContent = String(challengeStreak);
+        feedback.className = 'mole-play__feedback is-correct';
+        celebrateCorrectAnswer($('yield-challenge-check'));
+      } else {
+        challengeStreak = 0;
+        $('yield-challenge-streak').textContent = '0';
+        feedback.className = 'mole-play__feedback is-incorrect';
+      }
+      feedback.textContent = pipelineCorrect && correctLimiter && correctTheoretical && correctPercent
+        ? 'Correct! Your dimensional-analysis setup and yield calculations are right.'
+        : 'Not quite. Review your setup and calculations, then try again.';
+    });
+    $('yield-challenge-next').addEventListener('click', renderChallenge);
+    renderChallenge();
+    showSlide(0);
+  })();
+</script>
+
+<script>
+  (() => {
+    const reactions = {
+      propane: {
+        terms: [
+          { formula: 'C₃H₈', coefficient: 1, side: 'reactant' },
+          { formula: 'O₂', coefficient: 5, side: 'reactant' },
+          { formula: 'CO₂', coefficient: 3, side: 'product' },
+          { formula: 'H₂O', coefficient: 4, side: 'product' }
+        ]
+      },
+      ammonia: {
+        terms: [
+          { formula: 'N₂', coefficient: 1, side: 'reactant' },
+          { formula: 'H₂', coefficient: 3, side: 'reactant' },
+          { formula: 'NH₃', coefficient: 2, side: 'product' }
+        ]
+      },
+      water: {
+        terms: [
+          { formula: 'H₂', coefficient: 2, side: 'reactant' },
+          { formula: 'O₂', coefficient: 1, side: 'reactant' },
+          { formula: 'H₂O', coefficient: 2, side: 'product' }
+        ]
+      },
+      methane: {
+        terms: [
+          { formula: 'CH₄', coefficient: 1, side: 'reactant' },
+          { formula: 'O₂', coefficient: 2, side: 'reactant' },
+          { formula: 'CO₂', coefficient: 1, side: 'product' },
+          { formula: 'H₂O', coefficient: 2, side: 'product' }
+        ]
+      },
+      salt: {
+        terms: [
+          { formula: 'Na', coefficient: 2, side: 'reactant' },
+          { formula: 'Cl₂', coefficient: 1, side: 'reactant' },
+          { formula: 'NaCl', coefficient: 2, side: 'product' }
+        ]
+      },
+      'iron-oxide': {
+        terms: [
+          { formula: 'Fe', coefficient: 4, side: 'reactant' },
+          { formula: 'O₂', coefficient: 3, side: 'reactant' },
+          { formula: 'Fe₂O₃', coefficient: 2, side: 'product' }
+        ]
+      },
+      'hydrogen-chloride': {
+        terms: [
+          { formula: 'H₂', coefficient: 1, side: 'reactant' },
+          { formula: 'Cl₂', coefficient: 1, side: 'reactant' },
+          { formula: 'HCl', coefficient: 2, side: 'product' }
+        ]
+      },
+      'carbon-dioxide': {
+        terms: [
+          { formula: 'C', coefficient: 1, side: 'reactant' },
+          { formula: 'O₂', coefficient: 1, side: 'reactant' },
+          { formula: 'CO₂', coefficient: 1, side: 'product' }
+        ]
+      },
+      'potassium-chlorate': {
+        terms: [
+          { formula: 'KClO₃', coefficient: 2, side: 'reactant' },
+          { formula: 'KCl', coefficient: 2, side: 'product' },
+          { formula: 'O₂', coefficient: 3, side: 'product' }
+        ]
+      },
+      'calcium-carbonate': {
+        terms: [
+          { formula: 'CaCO₃', coefficient: 1, side: 'reactant' },
+          { formula: 'CaO', coefficient: 1, side: 'product' },
+          { formula: 'CO₂', coefficient: 1, side: 'product' }
+        ]
+      }
+    };
+    const $ = (id) => document.getElementById(id);
+    const activity = document.getElementById('mole-play');
+    const stepButtons = [...activity.querySelectorAll('.mole-play__step')];
+    const slides = [...activity.querySelectorAll('.mole-play__slide')];
+    let currentSlide = 0;
+    let activeReaction = reactions[$('mole-reaction').value];
+    let selectedSpecies = { source: 0, target: activeReaction.terms.length - 1 };
+    let practiceQuestion;
+    let practiceTiles = [];
+    let selectedPracticeTile = null;
+    let practiceSlots = { numerator: null, denominator: null, answer: null };
+    let challengeQuestion;
+    let challengeScore = 0;
+    let challengeStreak = 0;
+    let challengeAnswered = false;
+
+    function setSlide(index) {
+      currentSlide = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === currentSlide;
+        slide.hidden = !active;
+        slide.classList.toggle('is-active', active);
+        stepButtons[slideIndex].classList.toggle('is-active', active);
+        stepButtons[slideIndex].setAttribute('aria-selected', String(active));
+        stepButtons[slideIndex].tabIndex = active ? 0 : -1;
+      });
+      $('mole-play-progress').textContent = `Step ${currentSlide + 1} of ${slides.length}`;
+      $('mole-play-previous').disabled = currentSlide === 0;
+      $('mole-play-next').disabled = currentSlide === slides.length - 1;
+    }
+    stepButtons.forEach((button) => button.addEventListener('click', () => setSlide(Number(button.dataset.slide))));
+    $('mole-play-previous').addEventListener('click', () => setSlide(currentSlide - 1));
+    $('mole-play-next').addEventListener('click', () => setSlide(currentSlide + 1));
+    stepButtons.forEach((button, index) => button.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        const next = (index + (event.key === 'ArrowRight' ? 1 : -1) + stepButtons.length) % stepButtons.length;
+        setSlide(next);
+        stepButtons[next].focus();
+      }
+    }));
+
+    function formatNumber(number) {
+      return Number(number.toFixed(2)).toString();
+    }
+
+    function formatReactionEquation(reaction) {
+      return reaction.terms.map((term, index) => {
+        const previousTerm = reaction.terms[index - 1];
+        const operator = index === 0
+          ? ''
+          : term.side === previousTerm.side ? ' + ' : ' → ';
+        const coefficient = term.coefficient === 1 ? '' : `${term.coefficient} `;
+        return `${operator}${coefficient}${term.formula}`;
+      }).join('');
+    }
+
+    function renderBalancedEquation() {
+      $('mole-sim-balanced-equation').textContent = formatReactionEquation(activeReaction);
+    }
+
+    function renderSimulator() {
+      const equation = $('mole-sim-equation');
+      equation.replaceChildren();
+      renderBalancedEquation();
+      activeReaction.terms.forEach((term, index) => {
+        if (index > 0) {
+          const operator = document.createElement('span');
+          operator.className = 'mole-play__operator';
+          operator.textContent = term.side === activeReaction.terms[index - 1].side ? '+' : '→';
+          equation.append(operator);
+        }
+
+        const card = document.createElement('div');
+        card.className = 'mole-play__species';
+        card.dataset.speciesIndex = String(index);
+        const name = document.createElement('span');
+        name.className = 'mole-play__species-name';
+        name.innerHTML = `${term.formula}<small>${term.side}</small>`;
+        const stepper = document.createElement('span');
+        stepper.className = 'mole-play__stepper';
+        const decrement = document.createElement('button');
+        decrement.type = 'button';
+        decrement.textContent = '−';
+        decrement.setAttribute('aria-label', `Decrease ${term.formula} moles`);
+        const input = document.createElement('input');
+        input.type = 'number';
+        input.min = '0';
+        input.max = '10000';
+        input.step = '0.1';
+        input.value = formatNumber(term.coefficient);
+        input.dataset.molesIndex = String(index);
+        input.setAttribute('aria-label', `Moles of ${term.formula}`);
+        const increment = document.createElement('button');
+        increment.type = 'button';
+        increment.textContent = '+';
+        increment.setAttribute('aria-label', `Increase ${term.formula} moles`);
+        decrement.addEventListener('click', () => setSimulatorAmount(index, Number(input.value) - 0.1));
+        increment.addEventListener('click', () => setSimulatorAmount(index, Number(input.value) + 0.1));
+        input.addEventListener('focus', () => selectSimulatorSource(index));
+        input.addEventListener('input', () => {
+          const parsed = Number(input.value);
+          if (input.value === '' || !Number.isFinite(parsed) || parsed < 0) return;
+          setSimulatorAmount(index, parsed);
+        });
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('button')) return;
+          selectSimulatorSource(index);
+        });
+        stepper.append(decrement, input, increment);
+        card.append(name, stepper);
+        equation.append(card);
+      });
+      updateSimulatorValues(0, activeReaction.terms[0].coefficient);
+    }
+
+    function selectSimulatorSource(index) {
+      selectedSpecies.source = index;
+      if (index === selectedSpecies.target) {
+        selectedSpecies.target = (index + 1) % activeReaction.terms.length;
+      }
+      renderSimulatorBridge();
+    }
+
+    function setSimulatorAmount(index, amount) {
+      const bounded = Math.max(0, Math.min(10000, Number.isFinite(amount) ? amount : 0));
+      const input = $('mole-sim-equation').querySelector(`[data-moles-index="${index}"]`);
+      if (!input) return;
+      input.value = formatNumber(bounded);
+      updateSimulatorValues(index, bounded);
+    }
+
+    function updateSimulatorValues(changedIndex, amount) {
+      const sourceCoefficient = activeReaction.terms[changedIndex].coefficient;
+      const scale = amount / sourceCoefficient;
+      activeReaction.terms.forEach((term, index) => {
+        const input = $('mole-sim-equation').querySelector(`[data-moles-index="${index}"]`);
+        if (input && index !== changedIndex) input.value = formatNumber(term.coefficient * scale);
+      });
+      selectedSpecies.source = changedIndex;
+      if (selectedSpecies.source === selectedSpecies.target) {
+        selectedSpecies.target = (changedIndex + 1) % activeReaction.terms.length;
+      }
+      $('mole-sim-equation').querySelectorAll('.mole-play__species').forEach((card, index) => {
+        card.classList.toggle('is-selected', index === selectedSpecies.source);
+      });
+      renderSimulatorBridge();
+      renderSimulatorParticles();
+    }
+
+    function renderSimulatorBridge() {
+      const source = activeReaction.terms[selectedSpecies.source];
+      const target = activeReaction.terms[selectedSpecies.target];
+      const factor = $('mole-sim-factor');
+      factor.innerHTML = `<span>${target.coefficient} mol <span class="mole-play__unit">${target.formula}</span></span><span class="mole-play__fraction-rule"></span><span>${source.coefficient} mol <span class="mole-play__unit">${source.formula}</span></span>`;
+      $('mole-sim-bridge-copy').textContent = `To convert from ${source.formula} to ${target.formula}, multiply by the balanced-equation coefficient ratio ${target.coefficient} : ${source.coefficient}.`;
+      const sourceInput = $('mole-sim-equation').querySelector(`[data-moles-index="${selectedSpecies.source}"]`);
+      const targetInput = $('mole-sim-equation').querySelector(`[data-moles-index="${selectedSpecies.target}"]`);
+      const given = sourceInput ? Number(sourceInput.value) || 0 : 0;
+      const result = targetInput ? Number(targetInput.value) || 0 : 0;
+      $('mole-sim-example').innerHTML = `<strong>Worked example:</strong> ${formatNumber(given)} mol <span class="mole-play__unit is-cancelled">${source.formula}</span> × (${target.coefficient} mol ${target.formula} / ${source.coefficient} mol <span class="mole-play__unit is-cancelled">${source.formula}</span>) = <strong>${formatNumber(result)} mol ${target.formula}</strong>`;
+    }
+
+    function renderSimulatorParticles() {
+      const container = $('mole-sim-particles');
+      const values = activeReaction.terms.map((term, index) => ({
+        term,
+        amount: Number($('mole-sim-equation').querySelector(`[data-moles-index="${index}"]`)?.value) || 0
+      }));
+      const maximum = Math.max(0.01, ...values.map((item) => item.amount));
+      container.replaceChildren();
+      values.forEach(({ term, amount }) => {
+        const row = document.createElement('div');
+        row.className = 'mole-play__particle-row';
+        const label = document.createElement('span');
+        label.textContent = term.formula;
+        const track = document.createElement('span');
+        track.className = 'mole-play__particle-track';
+        const particleCount = amount > 0 ? Math.max(1, Math.ceil((amount / maximum) * 10)) : 0;
+        for (let index = 0; index < particleCount; index += 1) {
+          const particle = document.createElement('span');
+          particle.className = 'mole-play__particle';
+          particle.style.animationDelay = `${index * 18}ms`;
+          particle.setAttribute('aria-hidden', 'true');
+          track.append(particle);
+        }
+        const value = document.createElement('strong');
+        value.textContent = `${formatNumber(amount)} mol`;
+        row.append(label, track, value);
+        container.append(row);
+      });
+    }
+
+    $('mole-reaction').addEventListener('change', (event) => {
+      activeReaction = reactions[event.target.value];
+      selectedSpecies = { source: 0, target: activeReaction.terms.length - 1 };
+      renderSimulator();
+    });
+    renderSimulator();
+
+    const practicePairs = [
+      { reaction: 'propane', source: 'C₃H₈', sourceCoefficient: 1, target: 'H₂O', targetCoefficient: 4 },
+      { reaction: 'propane', source: 'O₂', sourceCoefficient: 5, target: 'CO₂', targetCoefficient: 3 },
+      { reaction: 'ammonia', source: 'N₂', sourceCoefficient: 1, target: 'NH₃', targetCoefficient: 2 },
+      { reaction: 'ammonia', source: 'H₂', sourceCoefficient: 3, target: 'NH₃', targetCoefficient: 2 },
+      { reaction: 'water', source: 'H₂', sourceCoefficient: 2, target: 'H₂O', targetCoefficient: 2 }
+    ];
+
+    function makeTile(id, text, values) {
+      return { id, text, ...values };
+    }
+
+    function makeTileButton(tile, onSelect) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'mole-play__tile';
+      button.draggable = true;
+      button.textContent = tile.text;
+      button.dataset.tileId = tile.id;
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => onSelect(tile.id));
+      button.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('text/plain', tile.id);
+      });
+      return button;
+    }
+
+    function attachTileSlots(container, selector, place, getSelected, clearSelection, tileArea) {
+      container.querySelectorAll(selector).forEach((slot) => {
+        slot.addEventListener('click', () => {
+          const selected = getSelected();
+          if (selected) {
+            place(slot, selected);
+            clearSelection();
+            updateSelectedTiles(tileArea, null);
+            return;
+          }
+          const id = slot.dataset.tileId;
+          if (id) place(slot, id, true);
+        });
+        slot.addEventListener('dragover', (event) => event.preventDefault());
+        slot.addEventListener('drop', (event) => {
+          event.preventDefault();
+          const id = event.dataTransfer.getData('text/plain');
+          if (id) {
+            place(slot, id);
+            clearSelection();
+            updateSelectedTiles(tileArea, null);
+          }
+        });
+      });
+    }
+
+    function updateSelectedTiles(container, id) {
+      container.querySelectorAll('.mole-play__tile').forEach((tile) => {
+        const selected = tile.dataset.tileId === id;
+        tile.classList.toggle('is-selected', selected);
+        tile.setAttribute('aria-pressed', String(selected));
+      });
+    }
+
+    function renderPractice() {
+      practiceQuestion = practicePairs[Math.floor(Math.random() * practicePairs.length)];
+      const given = [1.5, 2, 3, 4][Math.floor(Math.random() * 4)];
+      const answer = given * practiceQuestion.targetCoefficient / practiceQuestion.sourceCoefficient;
+      practiceQuestion.given = given;
+      practiceQuestion.answer = answer;
+      practiceSlots = { numerator: null, denominator: null, answer: null };
+      selectedPracticeTile = null;
+      $('mole-practice-prompt').textContent = `How many moles of ${practiceQuestion.target} are produced from ${given.toFixed(2)} moles of ${practiceQuestion.source}?`;
+      $('mole-practice-equation').textContent = formatReactionEquation(reactions[practiceQuestion.reaction]);
+      $('mole-practice-given').innerHTML = `${given.toFixed(2)} mol <span class="mole-play__unit">${practiceQuestion.source}</span>`;
+      $('mole-practice-feedback').textContent = '';
+      $('mole-practice-feedback').className = 'mole-play__feedback';
+      practiceTiles = [
+        makeTile('p-num', `${practiceQuestion.targetCoefficient} mol ${practiceQuestion.target}`, { kind: 'numerator', species: practiceQuestion.target, amount: practiceQuestion.targetCoefficient }),
+        makeTile('p-den', `${practiceQuestion.sourceCoefficient} mol ${practiceQuestion.source}`, { kind: 'denominator', species: practiceQuestion.source, amount: practiceQuestion.sourceCoefficient }),
+        makeTile('p-wrong-a', `${practiceQuestion.sourceCoefficient} mol ${practiceQuestion.source}`, { kind: 'numerator', species: practiceQuestion.source, amount: practiceQuestion.sourceCoefficient }),
+        makeTile('p-wrong-b', `${practiceQuestion.targetCoefficient} mol ${practiceQuestion.source}`, { kind: 'denominator', species: practiceQuestion.source, amount: practiceQuestion.targetCoefficient }),
+        makeTile('p-answer', `${formatNumber(answer)} mol ${practiceQuestion.target}`, { kind: 'answer', species: practiceQuestion.target, amount: answer }),
+        makeTile('p-wrong-answer', `${formatNumber(answer + 1)} mol ${practiceQuestion.target}`, { kind: 'answer', species: practiceQuestion.target, amount: answer + 1 })
+      ];
+      const tileArea = $('mole-practice-tiles');
+      tileArea.replaceChildren();
+      practiceTiles.forEach((tile) => tileArea.append(makeTileButton(tile, (id) => {
+        selectedPracticeTile = id;
+        updateSelectedTiles(tileArea, id);
+      })));
+      renderPracticeSlots();
+      }
+
+    function renderPracticeSlots() {
+      const numerator = practiceTiles.find((tile) => tile.id === practiceSlots.numerator);
+      const denominator = practiceTiles.find((tile) => tile.id === practiceSlots.denominator);
+      const cancellingFactor = numerator?.kind === 'numerator'
+        && numerator.species === practiceQuestion.target
+        && numerator.amount === practiceQuestion.targetCoefficient
+        && denominator?.kind === 'denominator'
+        && denominator.species === practiceQuestion.source
+        && denominator.amount === practiceQuestion.sourceCoefficient;
+      const givenUnit = $('mole-practice-given').querySelector('.mole-play__unit');
+      if (givenUnit) givenUnit.classList.toggle('is-cancelled', cancellingFactor);
+      $('mole-practice-work').querySelectorAll('[data-practice-slot]').forEach((slot) => {
+        const key = slot.dataset.practiceSlot;
+        const id = practiceSlots[key];
+        const tile = practiceTiles.find((candidate) => candidate.id === id);
+        slot.dataset.tileId = id || '';
+        if (tile) {
+          const cancelled = cancellingFactor && key === 'denominator';
+          slot.innerHTML = `${tile.amount} mol <span class="mole-play__unit${cancelled ? ' is-cancelled' : ''}">${tile.species}</span>`;
+          if (tile.kind === 'answer') slot.innerHTML = `${formatNumber(tile.amount)} mol <span class="mole-play__unit">${tile.species}</span>`;
+        } else {
+          slot.textContent = key === 'numerator' ? 'Numerator' : key === 'denominator' ? 'Denominator' : 'Final answer';
+        }
+        slot.classList.toggle('is-filled', Boolean(tile));
+      });
+    }
+
+    function placePracticeTile(slot, tileId, remove = false) {
+      const key = slot.dataset.practiceSlot;
+      if (remove) practiceSlots[key] = null;
+      else if (practiceTiles.some((tile) => tile.id === tileId)) practiceSlots[key] = tileId;
+      renderPracticeSlots();
+    }
+
+    attachTileSlots($('mole-practice-work'), '[data-practice-slot]', placePracticeTile, () => selectedPracticeTile, () => {
+      selectedPracticeTile = null;
+    }, $('mole-practice-tiles'));
+    $('mole-practice-new').addEventListener('click', renderPractice);
+    $('mole-practice-clear').addEventListener('click', () => {
+      practiceSlots = { numerator: null, denominator: null, answer: null };
+      selectedPracticeTile = null;
+      updateSelectedTiles($('mole-practice-tiles'), null);
+      $('mole-practice-feedback').textContent = '';
+      $('mole-practice-feedback').className = 'mole-play__feedback';
+      renderPracticeSlots();
+    });
+    $('mole-practice-check').addEventListener('click', () => {
+      const selected = Object.fromEntries(Object.entries(practiceSlots).map(([key, id]) => [key, practiceTiles.find((tile) => tile.id === id)]));
+      const correct = selected.numerator?.kind === 'numerator'
+        && selected.numerator.species === practiceQuestion.target
+        && selected.numerator.amount === practiceQuestion.targetCoefficient
+        && selected.denominator?.kind === 'denominator'
+        && selected.denominator.species === practiceQuestion.source
+        && selected.denominator.amount === practiceQuestion.sourceCoefficient
+        && selected.answer?.kind === 'answer'
+        && selected.answer.species === practiceQuestion.target
+        && Math.abs(selected.answer.amount - practiceQuestion.answer) < 0.001;
+      const feedback = $('mole-practice-feedback');
+      if (correct) {
+        feedback.className = 'mole-play__feedback is-correct';
+        feedback.innerHTML = `Correct! <span class="mole-play__unit is-cancelled">${practiceQuestion.source}</span> cancels: ${practiceQuestion.given.toFixed(2)} mol ${practiceQuestion.source} × (${practiceQuestion.targetCoefficient} mol ${practiceQuestion.target} / ${practiceQuestion.sourceCoefficient} mol <span class="mole-play__unit is-cancelled">${practiceQuestion.source}</span>) = <strong>${formatNumber(practiceQuestion.answer)} mol ${practiceQuestion.target}</strong>.`;
+        celebrateCorrectAnswer($('mole-practice-check'));
+      } else {
+        feedback.className = 'mole-play__feedback is-incorrect';
+        feedback.textContent = 'Not quite. Check that the given unit is in the denominator so it cancels, then check the coefficient ratio and answer.';
+      }
+    });
+    renderPractice();
+
+    const challenges = [
+      { reaction: 'propane', source: 'C₃H₈', sourceMolarMass: 44.10, sourceCoefficient: 1, product: 'CO₂', productMolarMass: 44.01, productCoefficient: 3, given: 5.00 },
+      { reaction: 'ammonia', source: 'N₂', sourceMolarMass: 28.02, sourceCoefficient: 1, product: 'NH₃', productMolarMass: 17.03, productCoefficient: 2, given: 14.01 },
+      { reaction: 'water', source: 'H₂', sourceMolarMass: 2.016, sourceCoefficient: 2, product: 'H₂O', productMolarMass: 18.015, productCoefficient: 2, given: 4.03 }
+    ];
+
+    function renderChallenge() {
+      challengeQuestion = challenges[Math.floor(Math.random() * challenges.length)];
+      challengeAnswered = false;
+      const answer = challengeQuestion.given / challengeQuestion.sourceMolarMass
+        * challengeQuestion.productCoefficient / challengeQuestion.sourceCoefficient
+        * challengeQuestion.productMolarMass;
+      challengeQuestion.answer = answer;
+      $('mole-challenge-prompt').textContent = `What mass of ${challengeQuestion.product} can be produced from ${challengeQuestion.given.toFixed(2)} g of ${challengeQuestion.source}?`;
+      $('mole-challenge-equation').textContent = formatReactionEquation(reactions[challengeQuestion.reaction]);
+      $('mole-challenge-molar-masses').textContent = `Molar masses: ${challengeQuestion.source} = ${challengeQuestion.sourceMolarMass} g/mol; ${challengeQuestion.product} = ${challengeQuestion.productMolarMass} g/mol.`;
+      $('mole-challenge-given').value = '';
+      $('mole-challenge-source-numerator').value = '';
+      $('mole-challenge-source-denominator').value = '';
+      $('mole-challenge-mole-numerator').value = '';
+      $('mole-challenge-mole-denominator').value = '';
+      $('mole-challenge-product-numerator').value = '';
+      $('mole-challenge-product-denominator').value = '';
+      $('mole-challenge-answer').value = '';
+      $('mole-challenge-feedback').textContent = '';
+      $('mole-challenge-feedback').className = 'mole-play__feedback';
+      $('mole-challenge-source-numerator-unit').textContent = `mol ${challengeQuestion.source}`;
+      $('mole-challenge-source-denominator-unit').textContent = `g ${challengeQuestion.source}`;
+      $('mole-challenge-mole-numerator-unit').textContent = `mol ${challengeQuestion.product}`;
+      $('mole-challenge-mole-denominator-unit').textContent = `mol ${challengeQuestion.source}`;
+      $('mole-challenge-product-numerator-unit').textContent = `g ${challengeQuestion.product}`;
+      $('mole-challenge-product-denominator-unit').textContent = `mol ${challengeQuestion.product}`;
+      $('mole-challenge-given-unit').textContent = `g ${challengeQuestion.source}`;
+      $('mole-challenge-answer-unit').textContent = `g ${challengeQuestion.product}`;
+    }
+
+    function evaluateCalculatorExpression(expression, lastAnswer) {
+      let cursor = 0;
+      const skipSpaces = () => {
+        while (/\s/.test(expression[cursor] || '')) cursor += 1;
+      };
+      const consume = (character) => {
+        skipSpaces();
+        if (expression[cursor] !== character) return false;
+        cursor += 1;
+        return true;
+      };
+      const parseExpression = () => {
+        let value = parseTerm();
+        while (true) {
+          if (consume('+')) value += parseTerm();
+          else if (consume('-')) value -= parseTerm();
+          else return value;
+        }
+      };
+      const parseTerm = () => {
+        let value = parseUnary();
+        while (true) {
+          if (consume('*')) value *= parseUnary();
+          else if (consume('/')) value /= parseUnary();
+          else return value;
+        }
+      };
+      const parseUnary = () => {
+        if (consume('+')) return parseUnary();
+        if (consume('-')) return -parseUnary();
+        return parsePower();
+      };
+      const parsePower = () => {
+        const value = parsePrimary();
+        if (consume('^')) return value ** parseUnary();
+        return value;
+      };
+      const parsePrimary = () => {
+        skipSpaces();
+        if (consume('(')) {
+          const value = parseExpression();
+          if (!consume(')')) throw new SyntaxError('Missing closing parenthesis');
+          return value;
+        }
+
+        const remaining = expression.slice(cursor);
+        const number = remaining.match(/^(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/);
+        if (number) {
+          cursor += number[0].length;
+          return Number(number[0]);
+        }
+
+        const identifier = remaining.match(/^[A-Za-z]+/);
+        if (!identifier) throw new SyntaxError('Expected a number');
+        cursor += identifier[0].length;
+        const name = identifier[0].toLowerCase();
+        if (name === 'pi') return Math.PI;
+        if (name === 'e') return Math.E;
+        if (name === 'ans') return lastAnswer;
+        if (!['sin', 'cos', 'tan', 'sqrt', 'ln', 'log'].includes(name) || !consume('(')) {
+          throw new SyntaxError('Unknown calculator function');
+        }
+        const argument = parseExpression();
+        if (!consume(')')) throw new SyntaxError('Missing function parenthesis');
+        if (name === 'sin') return Math.sin(argument * Math.PI / 180);
+        if (name === 'cos') return Math.cos(argument * Math.PI / 180);
+        if (name === 'tan') return Math.tan(argument * Math.PI / 180);
+        if (name === 'sqrt') return Math.sqrt(argument);
+        if (name === 'ln') return Math.log(argument);
+        return Math.log10(argument);
+      };
+
+      const result = parseExpression();
+      skipSpaces();
+      if (cursor !== expression.length) throw new SyntaxError('Unexpected calculator input');
+      if (!Number.isFinite(result)) throw new RangeError('Calculator result is not finite');
+      return String(Number(result.toPrecision(10)));
+    }
+
+    function bindCalculator(root, display) {
+      const state = { expression: '0', lastAnswer: 0, resultShown: false };
+      root.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (!button) return;
+        if (button.dataset.calculatorDigit !== undefined) {
+          state.expression = state.resultShown || state.expression === '0'
+            ? button.dataset.calculatorDigit
+            : state.expression + button.dataset.calculatorDigit;
+          state.resultShown = false;
+        } else if (button.dataset.calculatorAction === 'decimal') {
+          state.expression = state.resultShown || state.expression === '0'
+            ? '0.'
+            : `${state.expression}.`;
+          state.resultShown = false;
+        } else if (button.dataset.calculatorAction === 'clear') {
+          state.expression = '0';
+          state.resultShown = false;
+        } else if (button.dataset.calculatorAction === 'backspace') {
+          state.expression = state.resultShown || state.expression.length <= 1
+            ? '0'
+            : state.expression.slice(0, -1);
+          state.resultShown = false;
+        } else if (button.dataset.calculatorOperator) {
+          state.expression = state.expression === '0' && button.dataset.calculatorOperator === '-'
+            ? '-'
+            : state.expression + button.dataset.calculatorOperator;
+          state.resultShown = false;
+        } else if (button.dataset.calculatorFunction) {
+          const functionName = button.dataset.calculatorFunction;
+          state.expression = state.resultShown || state.expression === '0'
+            ? `${functionName}(`
+            : `${state.expression}${functionName}(`;
+          state.resultShown = false;
+        } else if (button.dataset.calculatorInsert) {
+          const value = button.dataset.calculatorInsert === 'pi' ? 'pi' : button.dataset.calculatorInsert;
+          state.expression = state.resultShown || state.expression === '0'
+            ? value
+            : `${state.expression}${value}`;
+          state.resultShown = false;
+        } else if (button.dataset.calculatorAction === 'equals') {
+          try {
+            const openParentheses = (state.expression.match(/\(/g) || []).length;
+            const closeParentheses = (state.expression.match(/\)/g) || []).length;
+            if (openParentheses > closeParentheses) {
+              state.expression += ')'.repeat(openParentheses - closeParentheses);
+            }
+            state.expression = evaluateCalculatorExpression(state.expression, state.lastAnswer);
+            state.lastAnswer = Number(state.expression);
+            state.resultShown = true;
+          } catch (error) {
+            if (!(error instanceof SyntaxError || error instanceof RangeError)) throw error;
+            state.expression = 'Error';
+            state.resultShown = true;
+          }
+        }
+        display.textContent = state.expression;
+      });
+    }
+
+    bindCalculator($('mole-play').querySelector('.mole-challenge-calculator'), $('mole-calculator-display'));
+    bindCalculator($('yield-play').querySelector('.yield-play__calculator'), $('yield-calculator-display'));
+
+    $('mole-challenge-check').addEventListener('click', () => {
+      const feedback = $('mole-challenge-feedback');
+      if (challengeAnswered) {
+        feedback.className = 'mole-play__feedback is-correct';
+        feedback.textContent = 'Already scored for this question. Choose Next question to keep practicing.';
+        return;
+      }
+      const inputs = [
+        $('mole-challenge-given'),
+        $('mole-challenge-source-numerator'),
+        $('mole-challenge-source-denominator'),
+        $('mole-challenge-mole-numerator'),
+        $('mole-challenge-mole-denominator'),
+        $('mole-challenge-product-numerator'),
+        $('mole-challenge-product-denominator'),
+        $('mole-challenge-answer')
+      ];
+      const values = inputs.map((input) => input.value.trim() === '' ? NaN : Number(input.value));
+      const [given, sourceNumerator, sourceDenominator, moleNumerator, moleDenominator, productNumerator, productDenominator, entered] = values;
+      const complete = values.every(Number.isFinite);
+      const near = (value, expected, tolerance = 0.005) => Math.abs(value - expected) <= tolerance;
+      const correctGiven = near(given, challengeQuestion.given);
+      const correctFactors = near(sourceNumerator, 1)
+        && near(sourceDenominator, challengeQuestion.sourceMolarMass)
+        && near(moleNumerator, challengeQuestion.productCoefficient)
+        && near(moleDenominator, challengeQuestion.sourceCoefficient)
+        && near(productNumerator, challengeQuestion.productMolarMass)
+        && near(productDenominator, 1);
+      const calculated = given * sourceNumerator / sourceDenominator
+        * moleNumerator / moleDenominator
+        * productNumerator / productDenominator;
+      const correctNumber = Number.isFinite(entered)
+        && Math.abs(entered - calculated) <= Math.max(0.02, challengeQuestion.answer * 0.005);
+      if (complete && correctGiven && correctFactors && correctNumber) {
+        challengeAnswered = true;
+        challengeScore += 10;
+        challengeStreak += 1;
+        $('mole-challenge-score').textContent = String(challengeScore);
+        $('mole-challenge-streak').textContent = String(challengeStreak);
+        feedback.className = 'mole-play__feedback is-correct';
+        feedback.innerHTML = `Pipeline correct! ${challengeQuestion.given.toFixed(2)} g ${challengeQuestion.source} × (1 mol ${challengeQuestion.source} / ${challengeQuestion.sourceMolarMass} g ${challengeQuestion.source}) × (${challengeQuestion.productCoefficient} mol ${challengeQuestion.product} / ${challengeQuestion.sourceCoefficient} mol ${challengeQuestion.source}) × (${challengeQuestion.productMolarMass} g ${challengeQuestion.product} / 1 mol ${challengeQuestion.product}) = <strong>${formatNumber(challengeQuestion.answer)} g ${challengeQuestion.product}</strong>.`;
+        celebrateCorrectAnswer($('mole-challenge-check'));
+      } else {
+        challengeStreak = 0;
+        $('mole-challenge-streak').textContent = '0';
+        feedback.className = 'mole-play__feedback is-incorrect';
+        feedback.textContent = !complete
+          ? 'Fill in the given mass, all three conversion factors, and the calculated product mass.'
+          : !correctGiven
+            ? 'Check the given mass against the value in the question.'
+            : !correctFactors
+              ? 'Check the numerator and denominator in each factor. Units should cancel in order: g reactant → mol reactant → mol product → g product.'
+              : 'Your setup is correct. Recheck the multiplication and final product mass.';
+      }
+    });
+    $('mole-challenge-next').addEventListener('click', renderChallenge);
+    renderChallenge();
+    setSlide(0);
+  })();
+</script>
+
+<script>
+  (() => {
+    const form = document.getElementById('site-search-form');
+    const input = document.getElementById('site-search');
+    const status = document.getElementById('site-search-status');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const query = input.value.trim().toLocaleLowerCase();
+      document.querySelectorAll('.is-search-match').forEach((element) => element.classList.remove('is-search-match'));
+      if (!query) {
+        status.textContent = 'Enter a term to search this page.';
+        input.focus();
+        return;
+      }
+
+      const match = [...document.querySelectorAll('section')]
+        .filter((section) => !section.hidden && section.textContent.toLocaleLowerCase().includes(query))
+        .sort((left, right) => left.textContent.length - right.textContent.length)[0];
+      if (!match) {
+        status.textContent = `No results found for ${input.value.trim()}.`;
+        return;
+      }
+
+      match.classList.add('is-search-match');
+      match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      status.textContent = `Found ${input.value.trim()} in ${match.querySelector('h1, h2, h3, h4')?.textContent.trim() || 'page content'}.`;
+    });
+  })();
+</script>
+
+<footer class="site-footer">
+  <p>Thank you for learning with SeanTheAtom!</p>
+</footer>
+
+</html>
